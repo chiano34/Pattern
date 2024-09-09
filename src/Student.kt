@@ -1,12 +1,12 @@
-data class Student(
-    val id: Int,
-    var lastName: String,
-    var firstName: String,
-    var surname: String,
-    var phone: String? = null,
-    var telegram: String? = null,
-    var email: String? = null,
-    var git: String? =null
+class Student(
+    private val id: Int,
+    private var lastName: String,
+    private var firstName: String,
+    private var surname: String,
+    private var phone: String? = null,
+    private var telegram: String? = null,
+    private var email: String? = null,
+    private var git: String? =null
 
 ) {
     var LastName: String
@@ -64,7 +64,19 @@ data class Student(
         set(value){
             git=value
         }
-
+    fun printObj()
+    {
+        print("ID: $id, Фамилия: $lastName, Имя: $firstName, Отчество: $surname")
+        if(phone!=null)
+            print(", Телефон: $phone")
+        if(telegram!=null)
+            print(", Телеграм: $telegram")
+        if(email!=null)
+            print(", Почта: $email")
+        if(git!=null)
+            print(", Git: $git")
+        println()
+    }
 
 
 }
