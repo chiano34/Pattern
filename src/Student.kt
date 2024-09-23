@@ -33,7 +33,8 @@ class Student{
             return field
         }
         set(value){
-            field=value
+            if(checkPhone(value))
+                field=value
         }
     var telegram: String?=null
         get() {
@@ -56,14 +57,30 @@ class Student{
         set(value){
             field=value
         }
+
+    companion object{
+        var counter=0
+        val phoneReg = Regex("^\\+7\\d{10}\$|^8\\d{10}\$")
+        fun checkPhone(value: String?):Boolean{
+            if(phoneReg.matches(value.toString()))
+                return true
+            else
+                println("Неправильный формат номера телефона")
+                return false
+        }
+    }
+    init {
+        counter++
+    }
     constructor(_lastName:String,_firstName:String,_surname:String){
+        id= counter
         lastName=_lastName
         firstName=_firstName
         surname=_surname
     }
-    constructor(_id:Int=0,_lastName:String,_firstName:String,_surname:String,
+    constructor(_lastName:String,_firstName:String,_surname:String,
                 _phone:String?=null,_telegram:String?=null,_email:String?=null,_git:String?=null){
-        id = _id
+        id = counter
         lastName=_lastName
         firstName=_firstName
         surname=_surname
@@ -74,7 +91,7 @@ class Student{
     }
     constructor(infoHash: HashMap<String,Any?>)
     {
-        id=infoHash["id"] as Int
+        id= counter
         lastName=infoHash["lastName"].toString()
         firstName=infoHash["firstName"].toString()
         surname=infoHash["surname"].toString()
