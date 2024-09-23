@@ -73,6 +73,14 @@ class Student{
             println("Валидация не пройдена")
             return false
     }
+    fun set_contact(_email: String?=null,_phone: String?=null,_telegram: String?=null){
+        if(checkEmail(_email))
+            this.email=_email
+        if(checkPhone(_phone))
+            this.phone=_phone
+        if(checkTg(_telegram))
+            this.telegram=_telegram
+    }
     companion object{
         var counter=0
         val phoneReg = Regex("^\\+7\\d{10}\$|^8\\d{10}\$")
