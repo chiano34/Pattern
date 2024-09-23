@@ -64,6 +64,15 @@ class Student{
                 field=value
         }
 
+    fun validate():Boolean{
+        if(checkGit(this.git)&&(checkTg(this.telegram)|| checkEmail(this.email)|| checkPhone(this.phone))){
+            println("Валидация пройдена")
+            return true
+        }
+        else
+            println("Валидация не пройдена")
+            return false
+    }
     companion object{
         var counter=0
         val phoneReg = Regex("^\\+7\\d{10}\$|^8\\d{10}\$")
@@ -75,35 +84,30 @@ class Student{
             if(gitReg.matches(value.toString()))
                 return true
             else
-                println("Неправильно введён git")
                 return false
         }
         fun checkTg(value: String?):Boolean{
             if(telegramReg.matches(value.toString()))
                 return true
             else
-                println("Неправильно введён телеграм")
                 return false
         }
         fun checkEmail(value: String?):Boolean{
             if(mailReg.matches(value.toString()))
                 return true
             else
-                println("Неправильно введена почта")
                 return false
         }
         fun checkFio(value: String?):Boolean{
             if(fioReg.matches(value.toString()))
                 return true
             else
-                println("Неправильно введено ФИО")
                 return false
         }
         fun checkPhone(value: String?):Boolean{
             if(phoneReg.matches(value.toString()))
                 return true
             else
-                println("Неправильный формат номера телефона")
                 return false
         }
     }
