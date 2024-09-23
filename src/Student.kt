@@ -1,69 +1,65 @@
-class Student(
-    private val id: Int,
-    private var lastName: String,
-    private var firstName: String,
-    private var surname: String,
-    private var phone: String? = null,
-    private var telegram: String? = null,
-    private var email: String? = null,
-    private var git: String? =null
-
-) {
-    var LastName: String
-        get() = lastName
-        set(value){
-            lastName=value
+class Student{
+    var id: String=""
+        get(){
+            return field
         }
-    var FirstName: String
-        get() = firstName
         set(value){
-            firstName=value
+            id=value
         }
-    var Surname: String
-        get() = surname
-        set(value){
-            surname=value
-        }
-    var Phone: String
+    var lastName: String=""
         get() {
-            if (phone != null)
-                return phone as String
-            else
-                return "Phone number not found"
+            return field
         }
         set(value){
-            phone=value
+            field=value
         }
-    var Telegram: String
+    var firstName: String=""
         get() {
-            if (telegram != null)
-                return telegram as String
-            else
-                return "telegram number not found"
+            return field
         }
         set(value){
-            telegram=value
+            field=value
         }
-    var Email: String
+    var surname: String=""
         get() {
-            if (email != null)
-                return email as String
-            else
-                return "email number not found"
+            return field
         }
         set(value){
-            email=value
+            field=value
         }
-    var GitHub: String
+    var phone: String?=null
         get() {
-            if (git != null)
-                return git as String
-            else
-                return "git number not found"
+            return field
         }
         set(value){
-            git=value
+            field=value
         }
+    var telegram: String?=null
+        get() {
+            return field
+        }
+        set(value){
+            field=value
+        }
+    var email: String?=null
+        get() {
+            return field
+        }
+        set(value){
+            field=value
+        }
+    var git: String?=null
+        get() {
+            return field
+        }
+        set(value){
+            field=value
+        }
+    constructor(_lastName:String,_firstName:String,_surname:String){
+        lastName=_lastName
+        firstName=_firstName
+        surname=_surname
+    }
     fun printObj()
     {
         print("ID: $id, Фамилия: $lastName, Имя: $firstName, Отчество: $surname")
