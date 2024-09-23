@@ -12,21 +12,24 @@ class Student{
             return field
         }
         set(value){
-            field=value
+            if(checkFio(value))
+                field=value
         }
     var firstName: String=""
         get() {
             return field
         }
         set(value){
-            field=value
+            if(checkFio(value))
+                field=value
         }
     var surname: String=""
         get() {
             return field
         }
         set(value){
-            field=value
+            if(checkFio(value))
+                field=value
         }
     var phone: String?=null
         get() {
@@ -41,26 +44,61 @@ class Student{
             return field
         }
         set(value){
-            field=value
+            if(checkTg(value))
+                field=value
         }
     var email: String?=null
         get() {
             return field
         }
         set(value){
-            field=value
+            if(checkEmail(value))
+                field=value
         }
     var git: String?=null
         get() {
             return field
         }
         set(value){
-            field=value
+            if(checkGit(value))
+                field=value
         }
 
     companion object{
         var counter=0
         val phoneReg = Regex("^\\+7\\d{10}\$|^8\\d{10}\$")
+        val fioReg=Regex("^[A-ZА-ЯЁ][a-zа-яё]{1,}$")
+        val mailReg=Regex("^[a-zA-Z0-9_]{2,30}+@[a-zA-Z0-9.-]{2,}+\\.[a-zA-Z]{2,}\$")
+        val telegramReg=Regex("^@+[a-zA-Z0-9_]{5,64}$")
+        val gitReg=Regex("^[a-zA-Z0-9]+/[a-zA-Z0-9-_]+\$")
+        fun checkGit(value: String?):Boolean{
+            if(gitReg.matches(value.toString()))
+                return true
+            else
+                println("Неправильно введён git")
+                return false
+        }
+        fun checkTg(value: String?):Boolean{
+            if(telegramReg.matches(value.toString()))
+                return true
+            else
+                println("Неправильно введён телеграм")
+                return false
+        }
+        fun checkEmail(value: String?):Boolean{
+            if(mailReg.matches(value.toString()))
+                return true
+            else
+                println("Неправильно введена почта")
+                return false
+        }
+        fun checkFio(value: String?):Boolean{
+            if(fioReg.matches(value.toString()))
+                return true
+            else
+                println("Неправильно введено ФИО")
+                return false
+        }
         fun checkPhone(value: String?):Boolean{
             if(phoneReg.matches(value.toString()))
                 return true
