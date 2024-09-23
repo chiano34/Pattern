@@ -72,6 +72,17 @@ class Student{
         email=_email
         git=_git
     }
+    constructor(infoHash: HashMap<String,Any?>)
+    {
+        id=infoHash["id"] as Int
+        lastName=infoHash["lastName"].toString()
+        firstName=infoHash["firstName"].toString()
+        surname=infoHash["surname"].toString()
+        phone=infoHash.getOrDefault("phone",null).toString()
+        telegram=infoHash.getOrDefault("telegram",null).toString()
+        email=infoHash.getOrDefault("email",null).toString()
+        git=infoHash.getOrDefault("git",null).toString()
+    }
     fun printObj()
     {
         print("ID: $id, Фамилия: $lastName, Имя: $firstName, Отчество: $surname")
