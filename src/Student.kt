@@ -74,18 +74,15 @@ class Student{
             return false
     }
     fun set_contact(_email: String?=null,_phone: String?=null,_telegram: String?=null){
-        if(checkEmail(_email))
             this.email=_email
-        if(checkPhone(_phone))
             this.phone=_phone
-        if(checkTg(_telegram))
             this.telegram=_telegram
     }
     companion object{
         var counter=0
         val phoneReg = Regex("^\\+7\\d{10}\$|^8\\d{10}\$")
         val fioReg=Regex("^[A-ZА-ЯЁ][a-zа-яё]{1,}$")
-        val mailReg=Regex("^[a-zA-Z0-9_]{2,30}+@[a-zA-Z0-9.-]{2,}+\\.[a-zA-Z]{2,}\$")
+        val mailReg=Regex("""\w*\@\w*\.\w*""")
         val telegramReg=Regex("^@+[a-zA-Z0-9_]{5,64}$")
         val gitReg=Regex("^[a-zA-Z0-9]+/[a-zA-Z0-9-_]+\$")
         fun checkGit(value: String?):Boolean{
@@ -127,6 +124,33 @@ class Student{
         lastName=_lastName
         firstName=_firstName
         surname=_surname
+    }
+    constructor(_info:String){
+        var args: List<String>
+        args=_info.split(" ")
+        id=counter
+        lastName=args[0]
+        firstName=args[1]
+        surname=args[2]
+        for(arg in args){
+            if(arg.split("=")[0]=="phone"){
+                println("ТГ"+arg.split("=")[1])
+                phone=arg.split("=")[1]
+            }
+            if(arg.split("=")[0]=="telegram"){
+                println("ТГ"+arg.split("=")[1])
+                telegram=arg.split("=")[1]
+            }
+            if(arg.split("=")[0]=="email"){
+                println("ТГ"+arg.split("=")[1])
+                email=arg.split("=")[1]
+            }
+            if(arg.split("=")[0]=="git"){
+                println("ТГ"+arg.split("=")[1])
+                git=arg.split("=")[1]
+            }
+        }
+
     }
     constructor(_lastName:String,_firstName:String,_surname:String,
                 _phone:String?=null,_telegram:String?=null,_email:String?=null,_git:String?=null){
