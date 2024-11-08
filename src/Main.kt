@@ -8,6 +8,6 @@ fun main() {
     anna.validate()
     tom.set_contact(_telegram = "@tomtg")
     for (student in list) {
-        student.printObj()
+        student.getInfo()
     }
 }

@@ -134,19 +134,15 @@ class Student{
         surname=args[2]
         for(arg in args){
             if(arg.split("=")[0]=="phone"){
-                println("ТГ"+arg.split("=")[1])
                 phone=arg.split("=")[1]
             }
             if(arg.split("=")[0]=="telegram"){
-                println("ТГ"+arg.split("=")[1])
                 telegram=arg.split("=")[1]
             }
             if(arg.split("=")[0]=="email"){
-                println("ТГ"+arg.split("=")[1])
                 email=arg.split("=")[1]
             }
             if(arg.split("=")[0]=="git"){
-                println("ТГ"+arg.split("=")[1])
                 git=arg.split("=")[1]
             }
         }
@@ -185,6 +181,22 @@ class Student{
             print(", Почта: $email")
         if(git!=null)
             print(", Git: $git")
+        println()
+    }
+    fun getInfo()
+    {
+        print("ID: $id, Фамилия: $lastName, Имя: $firstName, Отчество: $surname")
+        printContact()
+    }
+    fun printContact(){
+        if(git!=null)
+            print(", Git: $git")
+        if(telegram!=null)
+            print(", Телеграм: $telegram")
+        else if(phone!=null)
+            print(", Телефон: $phone")
+        else if(email!=null)
+            print(", Почта: $email")
         println()
     }
 
