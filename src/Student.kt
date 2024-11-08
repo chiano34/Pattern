@@ -186,18 +186,25 @@ class Student{
     fun getInfo()
     {
         print("ID: $id, Фамилия: $lastName, Имя: $firstName, Отчество: $surname")
-        printContact()
-    }
-    fun printContact(){
         if(git!=null)
             print(", Git: $git")
+        val contact = getContact()
+        if(contact!=null){
+            print(", Контакт: $contact")
+        }
+    }
+    fun getFIO():String{
+        val fio=lastName+" "+firstName[1]+"."+surname+"."
+        return fio
+    }
+    fun getContact():String?{
         if(telegram!=null)
-            print(", Телеграм: $telegram")
+            return telegram
         else if(phone!=null)
-            print(", Телефон: $phone")
+            return phone
         else if(email!=null)
-            print(", Почта: $email")
-        println()
+            return email
+        return null
     }
 
 
