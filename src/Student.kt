@@ -1,3 +1,6 @@
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.IOException
 class Student: Student_super{
     var lastName: String=""
         get() {
@@ -56,6 +59,26 @@ class Student: Student_super{
                 field=value
         }
 
+    companion object{
+        fun read_from_txt(adress:String):MutableList<Student>{
+            val file=File(adress)
+            var list= mutableListOf<Student>()
+            print(file.absolutePath)
+            try{
+                var lines=file.readLines()
+                for (line in lines){
+                    list.add(Student(line))
+                }
+            }
+            catch(e:FileNotFoundException){
+                println("could not find file")
+            }
+            catch(e:IOException){
+                println("could not read file")
+            }
+            return list
+        }
+    }
     fun validate():Boolean{
         if(checkGit(this.git)&&(getContact()!=null)){
             return true
@@ -156,6 +179,5 @@ class Student: Student_super{
             return email
         return null
     }
-
 
 }
