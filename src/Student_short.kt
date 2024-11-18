@@ -1,13 +1,5 @@
 import Student
-class Student_short {
-    private var id: Int=0
-        get(){
-            return field
-        }
-        set(value){
-            if(value>0)
-                field=value
-        }
+class Student_short: Student_super {
     private var FIO: String=""
         get(){
             return field
