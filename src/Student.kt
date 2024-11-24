@@ -78,6 +78,12 @@ class Student: Student_super{
             }
             return list
         }
+        fun write_to_txt(adress:String,name:String, students:MutableList<Student>){
+            val file=File(adress+name)
+            for(student in students) {
+                file.writeText(student.toString())
+            }
+        }
     }
     fun validate():Boolean{
         if(checkGit(this.git)&&(getContact()!=null)){
@@ -178,6 +184,18 @@ class Student: Student_super{
         else if(email!=null)
             return email
         return null
+    }
+    override fun toString():String{
+        var string=firstName+" "+lastName+" "+surname+" "
+        if(phone!=null)
+            string+="phone="+phone+" "
+        if(telegram!=null)
+            string+="telegram="+telegram+" "
+        if(email!=null)
+            string+="email="+email+" "
+        if(git!=null)
+            string+="git="+git+" "
+        return string
     }
 
 }

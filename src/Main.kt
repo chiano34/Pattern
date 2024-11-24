@@ -10,7 +10,9 @@ fun main() {
     val tom=Student("Johnson","Tom","William",_phone = "9891214092")
     val list: MutableList<Student> = mutableListOf(bob,anna,tom,ba)
     var list2= mutableListOf<Student>()
-    list2=Student.read_from_txt("src/students.txt")
+    Student.write_to_txt("src/","out.txt",list)
+    list2=Student.read_from_txt("src/out.txt")
+    print(bob.toString())
     for(student in list2){
         student.printObj()
     }
