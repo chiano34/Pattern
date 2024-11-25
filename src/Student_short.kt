@@ -1,14 +1,14 @@
 import Student
 class Student_short: Student_super {
-    private var FIO: String=""
+    internal var FIO: String=""
         get(){
             return field
         }
-    private var git: String?=null
+    internal var git: String?=null
         get(){
             return field
         }
-    private var contact: String?=null
+    internal var contact: String?=null
         get(){
             return field
         }

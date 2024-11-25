@@ -1,5 +1,5 @@
 import java.lang.reflect.Field
-class Data_list(val data:List<Any?>) {
+open class Data_list<T>(val data:List<T>) {
     private var selected:MutableList<Int> = mutableListOf()
     fun select(index:Int){
             if(index<=data.size) {
@@ -8,19 +8,13 @@ class Data_list(val data:List<Any?>) {
     }
     fun get_selected(): List<Int>{
         return selected
-
     }
-    fun get_names(): List<String>{
-        return data.map { it.toString() }
+    open fun get_names(): List<String>{
+        return listOf("")
     }
-    fun get_data(): Data_table{
-        var table=mutableListOf<List<Any?>>()
-        for(i in selected){
-            var row = mutableListOf<Any?>(i)
-            row.removeFirst()
-            row.add(data[i]!!::class.java.declaredFields.map{it}.toList())
-            table.add(row)
-        }
-        return Data_table(table)
+    open fun get_data(): MutableList<MutableList<Any?>>{
+        var names = mutableListOf<Any?>("")
+        var args= mutableListOf(names)
+        return (args)
     }
 }
