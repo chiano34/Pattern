@@ -1,0 +1,53 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Data_list<T> {
+  + select(Int): Unit
+   _selected: List<Int>
+   _data: List<List<Object>>
+   _names: List<String>
+   _args: List<List<Object>>
+   data: List<T>
+}
+class Data_list_student_short {
+   _names: List<String>
+   _table: Data_table
+   _args: List<List<Object>>
+}
+class Data_table {
+  + getElem(Int, Int): Object?
+   rows: Int
+   cols: Int
+}
+class Student {
+  + printObj(): Unit
+  + toString(): String
+  + getInfo(): Unit
+  + set_contact(String?, String?, String?): Unit
+  + validate(): Boolean
+   lastName: String
+   email: String?
+   git: String?
+   phone: String?
+   contact: String?
+   surname: String
+   firstName: String
+   telegram: String?
+   FIO: String
+}
+class Student_short {
+   contact: String?
+   FIO: String
+   git: String?
+}
+class Student_super {
+   id: Int
+}
+
+Data_list_student_short  -[#000082,plain]-^  Data_list               
+Student                  -[#000082,plain]-^  Student_super           
+Student_short            -[#000082,plain]-^  Student_super           
+@enduml
