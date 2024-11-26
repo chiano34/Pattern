@@ -3,6 +3,7 @@ open class Data_list<T>(val data:List<T>) {
     private var selected:MutableList<Int> = mutableListOf()
     fun select(index:Int){
             if(index<=data.size) {
+                if(index>=1)
                 selected.add(index)
             }
     }
@@ -13,8 +14,10 @@ open class Data_list<T>(val data:List<T>) {
         return listOf("")
     }
     open fun get_data(): MutableList<MutableList<Any?>>{
-        var names = mutableListOf<Any?>("")
-        var args= mutableListOf(names)
+        val args= get_args()
         return (args)
+    }
+    open fun get_args(): MutableList<MutableList<Any?>> {
+        return mutableListOf(mutableListOf())
     }
 }

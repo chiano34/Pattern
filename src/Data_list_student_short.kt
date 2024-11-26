@@ -1,10 +1,9 @@
 class Data_list_student_short(studentsList: List<Student_short>):Data_list<Student_short>(studentsList) {
     override fun get_names(): List<String> {
-        return listOf("N","FIO","git","contact")
+        return listOf("№","FIO","git","contact")
     }
-    override fun get_data(): MutableList<MutableList<Any?>> {
+    override fun get_args(): MutableList<MutableList<Any?>> {
         var args= mutableListOf<MutableList<Any?>>()
-        args.add(mutableListOf())
         var count =1
         for(row in data)
         {
@@ -12,5 +11,11 @@ class Data_list_student_short(studentsList: List<Student_short>):Data_list<Stude
             count++
         }
         return args
+    }
+    fun get_table(): Data_table{
+        var names= get_names()
+        var args=get_data()
+        args.add(0,names.toMutableList())
+        return Data_table(args)
     }
 }
