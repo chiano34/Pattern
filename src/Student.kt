@@ -60,8 +60,8 @@ class Student: Student_super{
         }
 
     companion object{
-        fun read_from_txt(adress:String):MutableList<Student>{
-            val file=File(adress)
+        fun read_from_txt(address:String):MutableList<Student>{
+            val file=File(address)
             var list= mutableListOf<Student>()
             print(file.absolutePath)
             try{
