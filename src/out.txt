@@ -1,1 +1,4 @@
-Bob Smith Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git 
+Bob Smith Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git
+Bobb Smith Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git
+Bobbb Smith Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git
+Bobbbb Smith Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git
