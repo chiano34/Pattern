@@ -9,7 +9,7 @@ fun main() {
     val bob=Student("Smith","Bob","John", _phone = "+79891214092" )
     val anna=Student("Smith","Anna","Helen",_phone = "89891214092", _git = "chiano34/pattern")
     val tom=Student("Johnson","Tom","William",_phone = "9891214092")
-    val tom2=Student("Johnson","Tomm","William",_phone = "9891214092")
+    val tom2=Student("Jason","Tomm","William",_phone = "9891214092")
     val list: MutableList<Student> = mutableListOf(ba,bob,anna,tom,tom2)
 //    var list2= mutableListOf<Student>()
 //    Student.write_to_txt("src/","out.txt",list)
@@ -35,14 +35,12 @@ fun main() {
 //        }
 //        println()
 //    }
-    var n=3
-    var k=2
-    var list_student=list.drop((k-1)*n).take(n)
-    for ( student in list_student){
-        student.printObj()
-    }
-//    var a=Student_list_txt()
-//    a.read_from_txt("src/out.txt")
-//    var list2=a.get_k_n_student_short_list(2,2)
-//    list2.get_data()
+    var a=Student_list_txt()
+    a.read_from_txt("src/out.txt")
+    a.add_student(tom2)
+    a.add_student(bob)
+    a.change_id(5,anna)
+    a.delete_id(5)
+    println(a.get_student_short_count())
+    a.get_k_n_student_short_list(1,5)
 }
