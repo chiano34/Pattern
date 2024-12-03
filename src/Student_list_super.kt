@@ -1,5 +1,5 @@
-open class Student_list_super {
-    var list_data:MutableList<Student> = mutableListOf<Student>()
+open class Student_list_super  {
+    var list_data:MutableList<Student> = mutableListOf()
     fun get_by_id(id:Int):Student?
     {
         for(student in list_data)
@@ -47,6 +47,6 @@ open class Student_list_super {
         return Data_list(short_list)
     }
     fun sort_by_name(){
-        list_data.sortBy { it.getFIO() }
+        list_data.sortBy { it.GetFIO() }
     }
 }

@@ -1,0 +1,56 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Student {
+  + GetContact(): String?
+  + validate(): Boolean
+  + toString(): String
+  + set_contact(String?, String?, String?): Unit
+  + printObj(): Unit
+  + GetInfo(): Unit
+  + GetFIO(): String
+}
+class Student_list_JSON {
+  + write_to_file(String): Unit
+  + read_from_file(String): List<Student>
+}
+class Student_list_YAML {
+  + read_from_file(String): List<Student>
+  + write_to_file(String): Unit
+}
+interface Student_list_interface << interface >> {
+  + write_to_file(String): Unit
+  + read_from_file(String): List<Student>
+}
+class Student_list_super {
+  + get_k_n_student_short_list(Int, Int): Data_list<Student_short>
+  + get_by_id(Int): Student?
+  + change_id(Int, Student): Unit
+  + delete_id(Int): Unit
+  + add_student(Student): Unit
+  + sort_by_name(): Unit
+}
+class Student_list_txt {
+  + read_from_file(String): List<Student>
+  + write_to_file(String): Unit
+}
+class Student_manager {
+  + read_from_file(String): Unit
+  + write_to_file(String): Unit
+}
+class Student_short
+class Student_super
+
+Student                 -[#000082,plain]-^  Student_super          
+Student_list_JSON       -[#008200,dashed]-^  Student_list_interface 
+Student_list_JSON       -[#000082,plain]-^  Student_list_super     
+Student_list_YAML       -[#008200,dashed]-^  Student_list_interface 
+Student_list_YAML       -[#000082,plain]-^  Student_list_super     
+Student_list_txt        -[#008200,dashed]-^  Student_list_interface 
+Student_list_txt        -[#000082,plain]-^  Student_list_super     
+Student_manager         -[#000082,plain]-^  Student_list_super     
+Student_short           -[#000082,plain]-^  Student_super          
+@enduml

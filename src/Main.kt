@@ -1,16 +1,10 @@
-import Student
-import Student_short
-import Data_list_student_short
-import java.text.NumberFormat.Style
-import Student_list_txt
-
 fun main() {
-    val ba=Student("Smith Bob Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git")
-    val bob=Student("Smith","Bob","John", _phone = "+79891214092" )
-    val anna=Student("Smith","Anna","Helen",_phone = "89891214092", _git = "chiano34/pattern")
-    val tom=Student("Johnson","Tom","William",_phone = "9891214092")
-    val tom2=Student("Jason","Tomm","William",_phone = "9891214092")
-    val list: MutableList<Student> = mutableListOf(ba,bob,anna,tom,tom2)
+    val ba = Student("Smith Bob Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git")
+    val bob = Student("Smith", "Bob", "John", _phone = "+79891214092")
+    val anna = Student("Smith", "Anna", "Helen", _phone = "89891214092", _git = "chiano34/pattern")
+    val tom = Student("Johnson", "Tom", "William", _phone = "9891214092")
+    val tom2 = Student("Jason", "Tomm", "William", _phone = "9891214092")
+    val list: MutableList<Student> = mutableListOf(ba, bob, anna, tom, tom2)
 //    var list2= mutableListOf<Student>()
 //    Student.write_to_txt("src/","out.txt",list)
 //    list2=Student.read_from_txt("src/out.txt")
@@ -35,21 +29,14 @@ fun main() {
 //        }
 //        println()
 //    }
-    var a=Student_list_txt()
-    Student_list_txt().read_from_txt("src/output/txt.txt")
-    a.add_student(tom2)
-    a.add_student(bob)
-    a.change_id(6,anna)
-    println(a.get_student_short_count())
-    a.get_k_n_student_short_list(2,1)
-    var b=Student_list_JSON()
-    b.add_student(ba)
-    b.add_student(anna)
-    println(b.get_student_short_count())
-    b.write_to_json("src/output/json.txt")
-    var c=Student_list_YAML()
-    c.add_student(anna)
-    c.add_student(tom)
-    println(c.get_student_short_count())
-    c.write_to_yaml("src/output/yaml.txt")
+    val manager = Student_manager(Student_list_JSON())
+    manager.add_student(anna)
+    manager.read_from_file("src/output/json.json")
+    manager.write_to_file("src/output/json2.json")
+    manager.set_strategy(Student_list_txt())
+    manager.read_from_file("src/output/txt.txt")
+    manager.write_to_file("src/output/txt2.txt")
+    manager.set_strategy(Student_list_YAML())
+    manager.read_from_file("src/output/yaml.yaml")
+    manager.write_to_file("src/output/yaml2.yaml")
 }

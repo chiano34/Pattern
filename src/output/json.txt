@@ -1,1 +1,0 @@
-[{"lastName":"Smith","firstName":"Bob","surname":"Sun","phone":"+79891214092","telegram":"@sdasd","email":"smth@get.ru","git":"chino34/git","id":1},{"lastName":"Smith","firstName":"Anna","surname":"Helen","phone":"89891214092","git":"chiano34/pattern","id":2}]

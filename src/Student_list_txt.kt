@@ -2,12 +2,12 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 
-class Student_list_txt:Student_list_super() {
-    fun read_from_txt(address:String):MutableList<Student>{
+class Student_list_txt:Student_list_super(),Student_list_interface {
+    override fun read_from_file(address:String):MutableList<Student>{
         val file= File(address)
-        var list= mutableListOf<Student>()
+        val list= mutableListOf<Student>()
         try{
-            var lines=file.readLines()
+            val lines=file.readLines()
             for (line in lines){
                 list.add(Student(line))
             }
@@ -21,10 +21,11 @@ class Student_list_txt:Student_list_super() {
         list_data=list
         return list
     }
-    fun write_to_txt(adress:String,name:String, students:MutableList<Student>){
-        val file= File(adress+name)
-        for(student in students) {
-            file.writeText(student.toString())
+    override fun write_to_file(address:String){
+        File(address).printWriter().use { out ->
+            list_data.forEach { message ->
+                out.println(message.toString())
+            }
         }
     }
 

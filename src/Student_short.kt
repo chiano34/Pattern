@@ -14,9 +14,9 @@ class Student_short: Student_super {
         }
     constructor(student: Student){
         this.id=student.id
-        this.FIO=student.getFIO()
+        this.FIO=student.GetFIO()
         this.git=student.git
-        this.contact=student.getContact()
+        this.contact=student.GetContact()
     }
 
 

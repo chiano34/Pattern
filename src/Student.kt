@@ -88,7 +88,7 @@ class Student: Student_super{
         }
     }
     fun validate():Boolean{
-        if(checkGit(this.git)&&(getContact()!=null)){
+        if(checkGit(this.git)&&(GetContact()!=null)){
             return true
         }
         else
@@ -103,11 +103,11 @@ class Student: Student_super{
 
     @JsonCreator
     constructor(
-        @JsonProperty("id") _id: Int = 0,
-        @JsonProperty("git") _git: String? = "",
+        @JsonProperty("id") _id: String = "",
         @JsonProperty("lastName") _lastName: String = "",
         @JsonProperty("firstName")  _firstName: String = "",
         @JsonProperty("surname")  _surname: String = "",
+        @JsonProperty("git") _git: String? = null,
         @JsonProperty("phone")  _phone: String? = null,
         @JsonProperty("telegram")  _telegram: String? = null,
         @JsonProperty("email")  _email: String? = null,)
@@ -185,21 +185,21 @@ class Student: Student_super{
             print(", Git: $git")
         println()
     }
-    fun getInfo()
+    fun GetInfo()
     {
         print("ID: $id, Фамилия: $lastName, Имя: $firstName, Отчество: $surname")
         if(git!=null)
             print(", Git: $git")
-        val contact = getContact()
+        val contact = GetContact()
         if(contact!=null){
             print(", Контакт: $contact")
         }
     }
-    fun getFIO():String{
+    fun GetFIO():String{
         val fio=lastName+" "+firstName[0]+"."+surname[0]+"."
         return fio
     }
-    fun getContact():String?{
+    fun GetContact():String?{
         if(telegram!=null)
             return telegram
         else if(phone!=null)
