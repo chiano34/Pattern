@@ -48,4 +48,9 @@ fun main() {
     a.add_student(anna)
     println(a.get_student_short_count())
     a.write_to_json("src/json.txt")
+    var c=Student_list_YAML()
+    c.add_student(anna)
+    c.add_student(tom)
+    println(c.get_student_short_count())
+    c.write_to_yaml("src/yaml.txt")
 }

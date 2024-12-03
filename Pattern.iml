@@ -11,30 +11,73 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
-        <CLASSES />
+        <CLASSES>
+          <root url="jar://O:/setup/gson-2.11.0.jar!/" />
+        </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/examples/android-proguard-example/src" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/extras/src/main/java" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/extras/src/test/java" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/graal-native-image-test/src/test/java" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/gson/src/main/java" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/gson/src/main/java-templates" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/gson/src/test/java" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/metrics/src/main/java" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/proto/src/main/java" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/proto/src/test/java" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/shrinker-test/src/main/java" />
-          <root url="jar://O:/setup/gson-gson-parent-2.11.0.zip!/gson-gson-parent-2.11.0/shrinker-test/src/test/java" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://O:/setup/gson-2.11.0.jar!/" />
+          <root url="jar://O:/setup/jackson-annotations-2.18.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://O:/setup/jackson-core-2.18.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://O:/setup/jackson-databind-2.18.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://O:/setup/jackson-dataformat-yaml-2.18.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://O:/setup/jackson-module-kotlin-2.18.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://O:/setup/snakeyaml-engine-kmp-jvm-3.0.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://O:/setup/snakeyaml-2.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

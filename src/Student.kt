@@ -1,8 +1,10 @@
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 class Student: Student_super{
-    var lastName: String=""
+    @field:JsonProperty("lastName") var lastName: String=""
         get() {
             return field
         }
@@ -10,7 +12,7 @@ class Student: Student_super{
             if(checkFio(value))
                 field=value
         }
-    var firstName: String=""
+    @field:JsonProperty("firstName") var firstName: String=""
         get() {
             return field
         }
@@ -18,7 +20,7 @@ class Student: Student_super{
             if(checkFio(value))
                 field=value
         }
-    var surname: String=""
+    @field:JsonProperty("surname") var surname: String=""
         get() {
             return field
         }
@@ -26,7 +28,7 @@ class Student: Student_super{
             if(checkFio(value))
                 field=value
         }
-    var phone: String?=null
+    @field:JsonProperty("phone") var phone: String?=null
         get() {
             return field
         }
@@ -34,7 +36,7 @@ class Student: Student_super{
             if(checkPhone(value))
                 field=value
         }
-    var telegram: String?=null
+    @field:JsonProperty("telegram") var telegram: String?=null
         get() {
             return field
         }
@@ -42,7 +44,7 @@ class Student: Student_super{
             if(checkTg(value))
                 field=value
         }
-    var email: String?=null
+    @field:JsonProperty("email") var email: String?=null
         get() {
             return field
         }
@@ -50,7 +52,7 @@ class Student: Student_super{
             if(checkEmail(value))
                 field=value
         }
-    var git: String?=null
+    @field:JsonProperty("git") var git: String?=null
         get() {
             return field
         }
@@ -97,6 +99,27 @@ class Student: Student_super{
             this.email=_email
             this.phone=_phone
             this.telegram=_telegram
+    }
+
+    @JsonCreator
+    constructor(
+        @JsonProperty("id") _id: Int = 0,
+        @JsonProperty("git") _git: String? = "",
+        @JsonProperty("lastName") _lastName: String = "",
+        @JsonProperty("firstName")  _firstName: String = "",
+        @JsonProperty("surname")  _surname: String = "",
+        @JsonProperty("phone")  _phone: String? = null,
+        @JsonProperty("telegram")  _telegram: String? = null,
+        @JsonProperty("email")  _email: String? = null,)
+    {
+        id=_id.toInt()
+        lastName=_lastName
+        firstName=_firstName
+        surname=_surname
+        phone=_phone
+        telegram=_telegram
+        email=_email
+        git=_git
     }
     constructor(_lastName:String,_firstName:String,_surname:String){
         id= counter

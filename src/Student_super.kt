@@ -1,5 +1,6 @@
+import com.fasterxml.jackson.annotation.JsonProperty
 open class Student_super {
-    var id: Int=0
+    @field:JsonProperty("id") var id: Int=0
         get(){
             return field
         }
