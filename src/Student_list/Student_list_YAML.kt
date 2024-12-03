@@ -17,7 +17,6 @@ class Student_list_YAML:Student_list_super(),Student_list_interface {
     {
         val file = File(address)
         val yamlMapper = ObjectMapper(YAMLFactory())
-
         yamlMapper.writeValue(file, list_data)
     }
 

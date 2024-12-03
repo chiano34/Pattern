@@ -1,4 +1,0 @@
-Smith Samantha Sun phone=+79891214091 telegram=@sdasa email=1smth@get.ru git=chino32/git
-Smith Samuel Sun phone=+79891214092 telegram=@sdasb email=2smth@get.ru git=chino33/git
-Smith Jared Son phone=+79891214093 telegram=@sdasc email=3smth@get.ru git=chino34/git
-Smith Lidia Son phone=+79891214094 telegram=@sdasd email=4smth@get.ru git=chino35/git

@@ -30,11 +30,10 @@ fun main() {
 //        println()
 //    }
     val manager = Student_manager(Student_list_JSON())
-    manager.add_student(anna)
     manager.read_from_file("src/output/json.json")
-    manager.write_to_file("src/output/json2.json")
+//    manager.write_to_file("src/output/json2.json")
     manager.set_strategy(Student_list_txt())
-    manager.read_from_file("src/output/txt.txt")
+//    manager.read_from_file("src/output/txt.txt")
     manager.write_to_file("src/output/txt2.txt")
     manager.set_strategy(Student_list_YAML())
     manager.read_from_file("src/output/yaml.yaml")

@@ -6,6 +6,7 @@ interface Student_list_interface {
 }
 class Student_manager(private var strategy: Student_list_interface) : Student_list_super(){
     fun set_strategy(strategy: Student_list_interface) {
+        strategy.list_data=this.strategy.list_data
         this.strategy = strategy
     }
     fun read_from_file(address: String){
