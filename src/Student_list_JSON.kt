@@ -1,17 +1,16 @@
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
-
-class Student_list_txt {
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+class Student_list_JSON {
     var list_data:MutableList<Student> = mutableListOf<Student>()
-    fun read_from_txt(address:String):MutableList<Student>{
+    fun read_from_json(address:String):MutableList<Student>{
+        val listType = object : TypeToken<MutableList<Student>>() {}.type
+        var gson = Gson()
         val file= File(address)
-        var list= mutableListOf<Student>()
         try{
-            var lines=file.readLines()
-            for (line in lines){
-                list.add(Student(line))
-            }
+            list_data = gson.fromJson(address,listType) ?: mutableListOf()
         }
         catch(e: FileNotFoundException){
             println("could not find file")
@@ -19,14 +18,16 @@ class Student_list_txt {
         catch(e: IOException){
             println("could not read file")
         }
-        list_data=list
-        return list
+        return list_data
     }
-    fun write_to_txt(adress:String,name:String, students:MutableList<Student>){
-        val file= File(adress+name)
-        for(student in students) {
-            file.writeText(student.toString())
-        }
+    fun write_to_json(address:String)
+    {
+        var gson = Gson()
+        var json = gson.toJson(list_data)
+        println(list_data)
+        println(json)
+        val file = File(address)
+        file.writeText(json)
     }
     fun get_by_id(id:Int):Student?
     {
@@ -43,14 +44,13 @@ class Student_list_txt {
         if(list_data.size>0)
             student.id=list_data.maxOf{it.id}+1
         list_data.add(student)
-
     }
     fun change_id(id:Int,student: Student){
         var st=get_by_id(id)
         if(st!=null){
-        var i=list_data.indexOf(st)
-        student.id=id
-        list_data[i]=student}
+            var i=list_data.indexOf(st)
+            student.id=id
+            list_data[i]=student}
         else{
             println("could not find student with id")
         }
@@ -78,4 +78,5 @@ class Student_list_txt {
     fun sort_by_name(){
         list_data.sortBy { it.getFIO() }
     }
+    
 }
