@@ -1,2 +1,4 @@
-Anna Smith Helen phone=89891214092 git=chiano34/pattern 
-Tom Johnson William 
+Smith Bob Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git 
+Smith Bobb Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git 
+Amith Abobbb Aun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git 
+Smith Bobbbb Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git 
