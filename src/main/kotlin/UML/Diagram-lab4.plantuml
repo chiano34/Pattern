@@ -1,0 +1,107 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Companion {
+  + read_from_txt(String): List<Student>
+  + write_to_txt(String, String, List<Student>): Unit
+}
+class Companion {
+  + checkGit(String?): Boolean
+  + checkPhone(String?): Boolean
+  + checkEmail(String?): Boolean
+  + checkTg(String?): Boolean
+  + checkFio(String?): Boolean
+   telegramReg: Regex
+   fioReg: Regex
+   phoneReg: Regex
+   gitReg: Regex
+   mailReg: Regex
+   counter: Int
+}
+class Companion {
+   instance: Student_list_DB
+}
+class MainKt {
+  + main(): Unit
+}
+class Student {
+  + GetContact(): String?
+  + GetFIO(): String
+  + GetInfo(): Unit
+  + validate(): Boolean
+  + set_contact(String?, String?, String?): Unit
+  + printObj(): Unit
+  + toString(): String
+   lastName: String
+   email: String?
+   git: String?
+   phone: String?
+   surname: String
+   firstName: String
+   telegram: String?
+}
+class Student_list_DB {
+  + delete_student(Int): Unit
+  + get_by_id(Int): Student?
+  + update_student(Student, Int): Unit
+  + get_k_n_student_short_list(Int, Int): List<Student>
+  + add_student(Student): Unit
+   _count: Int
+}
+class Student_list_JSON {
+  + read_from_file(String): List<Student>
+  + write_to_file(String): Unit
+}
+class Student_list_YAML {
+  + read_from_file(String): List<Student>
+  + write_to_file(String): Unit
+}
+interface Student_list_interface << interface >> {
+  + write_to_file(String): Unit
+  + read_from_file(String): List<Student>
+   list_data: List<Student>
+}
+class Student_list_super {
+  + add_student(Student): Unit
+  + delete_id(Int): Unit
+  + get_by_id(Int): Student?
+  + change_id(Int, Student): Unit
+  + get_k_n_student_short_list(Int, Int): Data_list<Student_short>
+  + sort_by_name(): Unit
+   list_data: List<Student>
+   _student_short_count: Int
+}
+class Student_list_txt {
+  + read_from_file(String): List<Student>
+  + write_to_file(String): Unit
+}
+class Student_manager {
+  + read_from_file(String): Unit
+  + write_to_file(String): Unit
+   _strategy: Student_list_interface
+}
+class Student_short {
+   contact: String?
+   FIO: String
+   git: String?
+}
+class Student_super {
+   id: Int
+}
+
+Companion               +-[#820000,plain]-  Student                
+Companion               +-[#820000,plain]-  Student_list_DB        
+Companion               +-[#820000,plain]-  Student_super          
+Student                 -[#000082,plain]-^  Student_super          
+Student_list_JSON       -[#008200,dashed]-^  Student_list_interface 
+Student_list_JSON       -[#000082,plain]-^  Student_list_super     
+Student_list_YAML       -[#008200,dashed]-^  Student_list_interface 
+Student_list_YAML       -[#000082,plain]-^  Student_list_super     
+Student_list_txt        -[#008200,dashed]-^  Student_list_interface 
+Student_list_txt        -[#000082,plain]-^  Student_list_super     
+Student_manager         -[#000082,plain]-^  Student_list_super     
+Student_short           -[#000082,plain]-^  Student_super          
+@enduml
