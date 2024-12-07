@@ -1,0 +1,15 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Student_list_JSON
+class Student_list_YAML
+class Student_list_super
+class Student_list_txt
+
+Student_list_JSON   -[#000082,plain]-^  Student_list_super 
+Student_list_YAML   -[#000082,plain]-^  Student_list_super 
+Student_list_txt    -[#000082,plain]-^  Student_list_super 
+@enduml
