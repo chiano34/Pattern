@@ -3,8 +3,9 @@ import java.sql.DriverManager
 import java.sql.ResultSet
 import java.sql.Statement
 
-class Student_list_DB() {
+class Student_list_DB private constructor() {
     private lateinit var connection: Connection
+
     init {
         try {
             connection = DriverManager.getConnection(
@@ -12,8 +13,20 @@ class Student_list_DB() {
                 "postgres",
                 "admin"
             )
+            println("Database connection established.")
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    companion object {
+        @Volatile
+        private var instance: Student_list_DB? = null
+
+        fun getInstance(): Student_list_DB {
+            return instance ?: synchronized(this) {
+                instance ?: Student_list_DB().also { instance = it }
+            }
         }
     }
     fun get_by_id(student_id:Int): Student? {
