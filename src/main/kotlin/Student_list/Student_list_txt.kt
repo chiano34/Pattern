@@ -2,7 +2,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 
-class Student_list_txt:Student_list_super(),Student_list_interface {
+class Student_list_txt:Student_list_super(),Strategy_interface {
     override fun read_from_file(address:String):MutableList<Student>{
         val file= File(address)
         val list= mutableListOf<Student>()

@@ -16,7 +16,7 @@ open class Student_list_super  {
             student.id=list_data.maxOf{it.id}+1
         list_data.add(student)
     }
-    fun change_id(id:Int,student: Student){
+    fun update_student(id:Int,student: Student){
         var st=get_by_id(id)
         if(st!=null){
             var i=list_data.indexOf(st)
@@ -26,7 +26,7 @@ open class Student_list_super  {
             println("could not find student with id")
         }
     }
-    fun delete_id(id:Int){
+    fun delete_student(id:Int){
         var st=get_by_id(id)
         if(st!=null){
             var i=list_data.indexOf(st)
@@ -37,7 +37,8 @@ open class Student_list_super  {
         }
 
     }
-    fun get_student_short_count():Int{
+    fun get_count():Int{
+        println(list_data.size)
         return list_data.size
     }
     fun get_k_n_student_short_list(k:Int,n:Int):Data_list<Student_short>{
