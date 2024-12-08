@@ -6,7 +6,7 @@ import javafx.stage.Stage
 class Window : Application() {
     override fun start(stage: Stage) {
         val fxmlLoader = FXMLLoader(Window::class.java.getResource("window.fxml"))
-        val scene = Scene(fxmlLoader.load(), 866.0, 642.0)
+        val scene = Scene(fxmlLoader.load(), 900.0, 600.0)
         stage.title = "Student Management App"
         stage.scene = scene
         stage.show()
