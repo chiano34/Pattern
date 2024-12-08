@@ -1,0 +1,113 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Companion {
+  + checkFio(String?): Boolean
+  + checkPhone(String?): Boolean
+  + checkTg(String?): Boolean
+  + checkGit(String?): Boolean
+  + checkEmail(String?): Boolean
+}
+class Companion
+class Companion {
+  + read_from_txt(String): List<Student>
+  + write_to_txt(String, String, List<Student>): Unit
+}
+class Data_list<T> {
+  + select(Int): Unit
+}
+class Data_list_student_short
+class Data_table {
+  + getElem(Int, Int): Object?
+}
+class MainKt {
+  + main(): Unit
+}
+interface Strategy_interface << interface >> {
+  + write_to_file(String): Unit
+  + read_from_file(String): List<Student>
+}
+class Student {
+  + validate(): Boolean
+  + set_contact(String?, String?, String?): Unit
+  + GetContact(): String?
+  + toString(): String
+  + printObj(): Unit
+  + GetFIO(): String
+  + GetInfo(): Unit
+}
+class Student_list {
+  + get_by_id(Int): Student?
+  + get_k_n_student_short_list(Int, Int): Data_list<Student_short>
+  + add_student(Student): Unit
+  + update_student(Student, Int): Unit
+  + delete_student(Int): Unit
+}
+class Student_list_DB {
+  + delete_student(Int): Unit
+  + update_student(Student, Int): Unit
+  + get_by_id(Int): Student?
+  + get_k_n_student_short_list(Int, Int): Data_list<Student_short>
+  + add_student(Student): Unit
+}
+class Student_list_JSON {
+  + read_from_file(String): List<Student>
+  + write_to_file(String): Unit
+}
+class Student_list_YAML {
+  + read_from_file(String): List<Student>
+  + write_to_file(String): Unit
+}
+class Student_list_adapter {
+  + delete_student(Int): Unit
+  + add_student(Student): Unit
+  + get_k_n_student_short_list(Int, Int): Data_list<Student_short>
+  + get_by_id(Int): Student?
+  + update_student(Student, Int): Unit
+}
+interface Student_list_interface << interface >> {
+  + get_k_n_student_short_list(Int, Int): Data_list<Student_short>
+  + update_student(Student, Int): Unit
+  + delete_student(Int): Unit
+  + get_by_id(Int): Student?
+  + add_student(Student): Unit
+}
+class Student_list_super {
+  + get_k_n_student_short_list(Int, Int): Data_list<Student_short>
+  + sort_by_name(): Unit
+  + delete_student(Int): Unit
+  + add_student(Student): Unit
+  + update_student(Int, Student): Unit
+  + get_by_id(Int): Student?
+}
+class Student_list_txt {
+  + read_from_file(String): List<Student>
+  + write_to_file(String): Unit
+}
+class Student_manager {
+  + read_from_file(String): Unit
+  + write_to_file(String): Unit
+}
+class Student_short
+class Student_super
+
+Companion                +-[#820000,plain]-  Student                 
+Companion                +-[#820000,plain]-  Student_list_DB         
+Companion                +-[#820000,plain]-  Student_super           
+Data_list_student_short  -[#000082,plain]-^  Data_list               
+Student                  -[#000082,plain]-^  Student_super           
+Student_list             -[#008200,dashed]-^  Student_list_interface  
+Student_list_DB          -[#008200,dashed]-^  Student_list_interface  
+Student_list_JSON        -[#008200,dashed]-^  Strategy_interface      
+Student_list_JSON        -[#000082,plain]-^  Student_list_super      
+Student_list_YAML        -[#008200,dashed]-^  Strategy_interface      
+Student_list_YAML        -[#000082,plain]-^  Student_list_super      
+Student_list_adapter     -[#008200,dashed]-^  Student_list_interface  
+Student_list_txt         -[#008200,dashed]-^  Strategy_interface      
+Student_list_txt         -[#000082,plain]-^  Student_list_super      
+Student_manager          -[#000082,plain]-^  Student_list_super      
+Student_short            -[#000082,plain]-^  Student_super           
+@enduml
