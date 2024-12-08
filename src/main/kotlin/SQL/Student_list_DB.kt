@@ -107,7 +107,7 @@ class Student_list_DB private constructor():Student_list_interface {
         }
         return count
     }
-    override fun get_k_n_student_short_list(n:Int,k:Int):Data_list<Student_short> {
+    override fun get_k_n_student_short_list(k:Int,n:Int):Data_list<Student_short> {
         val list= mutableListOf<Student_short>()
         val statement: Statement = connection.createStatement()
         val result = statement.executeQuery("SELECT * FROM student ORDER BY id ASC LIMIT ${n} OFFSET ${(k-1)*n};")
