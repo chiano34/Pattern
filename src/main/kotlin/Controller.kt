@@ -4,7 +4,6 @@ import javafx.fxml.FXML
 import javafx.scene.Node
 import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
-import javafx.util.Callback
 
 class Controller {
     //фильтрация
@@ -61,7 +60,7 @@ class Controller {
     private lateinit var tg_table: TableColumn<Any, Any>
     // пагинация
     private val rowsPerPage = 15
-    private lateinit var pagination: Pagination
+
     @FXML
     private lateinit var button_next: Button
 
@@ -73,6 +72,23 @@ class Controller {
 
     @FXML
     private lateinit var page_text: TextField
+    // Активные кнопки
+    @FXML
+    private lateinit var button_add: Button
+
+    @FXML
+    private lateinit var button_change: Button
+
+    @FXML
+    private lateinit var button_delete: Button
+
+    @FXML
+    private lateinit var button_refresh: Button
+    // Дополнительные кнопки
+    @FXML
+    private lateinit var button_clear: Button
+    @FXML
+    private lateinit var FIO_text: TextField
 
     private val students_list: ObservableList<Student> = FXCollections.observableArrayList(
         Student("Abba Bob Cevin phone=+71891214092 telegram=@csdasd email=bsmth@get.ru git=chino34/git"),
@@ -99,9 +115,34 @@ class Controller {
     )
     @FXML
     fun initialize() {
-        initialize_table()
         initiazile_filter()
+        initialize_table()
         update_pages()
+        initilize_buttons()
+        initialize_actions()
+    }
+
+    fun initilize_buttons(){
+        button_change.isDisable=true
+        button_delete.isDisable=true
+        table.selectionModel.selectionMode = SelectionMode.MULTIPLE
+        table.selectionModel.selectedItemProperty().addListener { _, _, _ ->
+            val selectedCount = table.selectionModel.selectedItems.size
+            if(selectedCount==1){
+                button_change.isDisable = false
+                button_delete.isDisable = false
+            }
+            else if(selectedCount>1){
+                button_change.isDisable = true
+                button_delete.isDisable = false
+            }
+            if(selectedCount==0){
+                button_change.isDisable = true
+                button_delete.isDisable = true
+            }
+        }
+    }
+    fun initialize_actions(){
         button_prev.setOnAction {
             if(page_text.text.toInt()-1>=1){
                 page_text.text=(page_text.text.toInt()-1).toString()
@@ -114,28 +155,22 @@ class Controller {
             }
             update_pages()
         }
-    }
+        button_clear.setOnAction {
+            Git_list.value="Не важно"
+            Phone_list.value="Не важно"
+            Tg_list.value="Не важно"
+            Email_list.value="Не важно"
+            FIO_text.clear()
+            Git_text.clear()
+            Phone_text.clear()
+            Tg_text.clear()
+            Email_text.clear()
+            Git_text.isDisable=true
+            Phone_text.isDisable=true
+            Email_text.isDisable=true
+            Tg_text.isDisable=true
 
-    fun initialize_table(){
-        id_table.cellValueFactory =PropertyValueFactory("id")
-        lastname_table.cellValueFactory = PropertyValueFactory("lastName")
-        firstname_table.cellValueFactory = PropertyValueFactory("firstName")
-        surname_table.cellValueFactory = PropertyValueFactory("surname")
-        git_table.cellValueFactory = PropertyValueFactory("git")
-        tg_table.cellValueFactory = PropertyValueFactory("telegram")
-        phone_table.cellValueFactory = PropertyValueFactory("phone")
-        email_table.cellValueFactory = PropertyValueFactory("email")
-    }
-    private fun update_pages(){
-        var pagecount=Math.ceil(students_list.size.toDouble() / 15).toInt()
-        page_all.text=pagecount.toString()
-        createPage(page_text.text.toInt())
-    }
-    private fun createPage(pageIndex: Int): Node? {
-        val fromIndex = (pageIndex-1) * rowsPerPage
-        val toIndex = Math.min(fromIndex + rowsPerPage, students_list.size)
-        table.items = FXCollections.observableArrayList(students_list.subList(fromIndex, toIndex))
-        return table
+        }
     }
     fun initiazile_filter(){
         val git_list:ObservableList<Any> = FXCollections.observableArrayList("Да", "Нет", "Не важно")
@@ -158,6 +193,29 @@ class Controller {
         Tg_list.setOnAction {
             handleChoice()
         }
+    }
+
+    fun initialize_table(){
+        id_table.cellValueFactory =PropertyValueFactory("id")
+        lastname_table.cellValueFactory = PropertyValueFactory("lastName")
+        firstname_table.cellValueFactory = PropertyValueFactory("firstName")
+        surname_table.cellValueFactory = PropertyValueFactory("surname")
+        git_table.cellValueFactory = PropertyValueFactory("git")
+        tg_table.cellValueFactory = PropertyValueFactory("telegram")
+        phone_table.cellValueFactory = PropertyValueFactory("phone")
+        email_table.cellValueFactory = PropertyValueFactory("email")
+    }
+
+    private fun update_pages(){
+        var pagecount=Math.ceil(students_list.size.toDouble() / 15).toInt()
+        page_all.text=pagecount.toString()
+        createPage(page_text.text.toInt())
+    }
+    private fun createPage(pageIndex: Int): Node? {
+        val fromIndex = (pageIndex-1) * rowsPerPage
+        val toIndex = Math.min(fromIndex + rowsPerPage, students_list.size)
+        table.items = FXCollections.observableArrayList(students_list.subList(fromIndex, toIndex))
+        return table
     }
 
     private fun handleChoice() {
