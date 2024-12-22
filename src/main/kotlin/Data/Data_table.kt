@@ -1,4 +1,4 @@
-class Data_table(private val data: List<List<Any?>>) {
+class Data_table(private var data: List<List<Any?>>) {
     fun getElem(row: Int, col: Int): Any? {
         return data.getOrNull(row)?.getOrNull(col)
     }

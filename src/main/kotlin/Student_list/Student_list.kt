@@ -5,7 +5,7 @@ interface Student_list_interface
     fun add_student(student:Student)
     fun update_student(student: Student,id:Int,)
     fun delete_student(id:Int)
-    fun get_k_n_student_short_list(k: Int, n: Int) : Data_list<Student_short>
+    fun get_k_n_student_short_list(k: Int, n: Int) : Data_list_student_short
     fun get_count():Int
 }
 class Student_list_adapter(var path:String):Student_list_interface
@@ -23,8 +23,8 @@ class Student_list_adapter(var path:String):Student_list_interface
     override fun get_by_id(id: Int): Student? {
         return student_list?.get_by_id(id)
     }
-    override fun get_k_n_student_short_list(k: Int, n: Int): Data_list<Student_short> {
-        return student_list?.get_k_n_student_short_list(k,n) ?:Data_list(mutableListOf())
+    override fun get_k_n_student_short_list(k: Int, n: Int): Data_list_student_short {
+        return student_list?.get_k_n_student_short_list(k,n) ?:Data_list_student_short(mutableListOf())
     }
     override fun add_student(student: Student) {
         student_list?.add_student(student)
@@ -54,8 +54,8 @@ class Student_list(path: String):Student_list_interface {
     override fun get_by_id(id: Int): Student? {
         return student_list?.get_by_id(id)
     }
-    override fun get_k_n_student_short_list(k: Int, n: Int): Data_list<Student_short> {
-        return student_list?.get_k_n_student_short_list(k,n) ?:Data_list(mutableListOf())
+    override fun get_k_n_student_short_list(k: Int, n: Int): Data_list_student_short {
+        return student_list?.get_k_n_student_short_list(k,n) ?:Data_list_student_short(mutableListOf())
     }
     override fun add_student(student: Student) {
         student_list?.add_student(student)

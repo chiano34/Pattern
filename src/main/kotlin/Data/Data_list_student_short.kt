@@ -1,4 +1,13 @@
+import MVC.View
+import kotlin.math.ceil
 class Data_list_student_short(studentsList: List<Student_short>):Data_list<Student_short>(studentsList) {
+    private var observer: View? = null
+    fun notify_view() {
+        observer?.setTableData(this.data)
+    }
+    fun setObserver(observer: View) {
+        this.observer = observer
+    }
     override fun get_names(): List<String> {
         return listOf("№","FIO","git","contact")
     }

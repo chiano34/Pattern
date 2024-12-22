@@ -1,5 +1,7 @@
 package MVC
 
+import Data_list
+import Data_list_student_short
 import Student
 import Student_list
 import Student_short
@@ -10,12 +12,15 @@ import javafx.scene.Node
 import javafx.scene.control.SelectionMode
 import javafx.scene.control.TableView
 import javafx.scene.control.cell.PropertyValueFactory
+import kotlin.math.ceil
 
 public class Student_list_controller{
 
     // пагинация
     private val rowsPerPage = 15
-
+    public var curPage=1
+    public var allPages=1
+    private lateinit var data_list: Data_list_student_short
     private var view: View? = null
     private var student_list:Student_list?=null
 
@@ -24,38 +29,12 @@ public class Student_list_controller{
         this.view = view
         println("Контроллер получил view")
     }
-
-    private val students_list: ObservableList<Student_short> = FXCollections.observableArrayList(
-        Student_short(Student(1,"Abba Bob Cevin phone=+71891214092 telegram=@csdasd email=bsmth@get.ru git=chino34/git")),
-        Student_short(Student(2,"Babba Ann Bobby phone=+72891214092 telegram=@bsdasd email=csmth@get.ru git=achino34/git")),
-        Student_short(Student(3,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(4,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(5,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(6,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(7,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(8,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(9,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(10,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(11,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(12,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(13,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(14,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(15,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(16,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(17,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(18,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(19,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")),
-        Student_short(Student(20,"Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")))
-
-    public fun update_pages():String{
-        var pagecount=Math.ceil(students_list.size.toDouble() / 15).toInt()
-        return pagecount.toString()
-    }
-    public fun createPage(pageIndex: Int,tableView: TableView<Student_short>): TableView<Student_short>{
-        val fromIndex = (pageIndex-1) * rowsPerPage
-        val toIndex = Math.min(fromIndex + rowsPerPage, students_list.size)
-        tableView.items = FXCollections.observableArrayList(students_list.subList(fromIndex, toIndex))
-        return tableView
+    public  fun refresh_data(){
+        allPages=ceil(student_list!!.get_count().toDouble()/15.0).toInt()
+        view?.setTableParams(curPage,allPages)
+        data_list= student_list?.get_k_n_student_short_list(curPage,rowsPerPage)!!
+        data_list.setObserver(view!!)
+        data_list.notify_view()
     }
 
 }

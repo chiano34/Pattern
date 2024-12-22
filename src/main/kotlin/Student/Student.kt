@@ -64,10 +64,10 @@ class Student: Student_super{
     companion object{
         fun read_from_txt(address:String):MutableList<Student>{
             val file=File(address)
-            var list= mutableListOf<Student>()
+            val list= mutableListOf<Student>()
             print(file.absolutePath)
             try{
-                var lines=file.readLines()
+                val lines=file.readLines()
                 for (line in lines){
                     list.add(Student(line))
                 }
@@ -107,10 +107,11 @@ class Student: Student_super{
         @JsonProperty("lastName") _lastName: String = "",
         @JsonProperty("firstName")  _firstName: String = "",
         @JsonProperty("surname")  _surname: String = "",
-        @JsonProperty("git") _git: String? = null,
-        @JsonProperty("phone")  _phone: String? = null,
         @JsonProperty("telegram")  _telegram: String? = null,
-        @JsonProperty("email")  _email: String? = null,)
+        @JsonProperty("phone")  _phone: String? = null,
+        @JsonProperty("email")  _email: String? = null,
+        @JsonProperty("git") _git: String? = null,
+    )
     {
         id=_id.toInt()
         lastName=_lastName
@@ -128,7 +129,7 @@ class Student: Student_super{
         surname=_surname
     }
     constructor(_id:Int,_info:String){
-        var args: List<String>
+        val args: List<String>
         args=_info.split(" ")
         id=_id
         lastName=args[0]
@@ -151,7 +152,7 @@ class Student: Student_super{
 
     }
     constructor(_info:String){
-        var args: List<String>
+        val args: List<String>
         args=_info.split(" ")
         id=counter
         lastName=args[0]

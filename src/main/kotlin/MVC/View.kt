@@ -1,11 +1,9 @@
 package MVC
 
-import Student
 import Student_short
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.fxml.FXML
-import javafx.scene.Node
 import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
 class View {
@@ -56,7 +54,6 @@ class View {
     @FXML
     private lateinit var table: TableView<Student_short>
 
-
     @FXML
     private lateinit var button_next: Button
 
@@ -67,7 +64,7 @@ class View {
     private lateinit var page_all: Label
 
     @FXML
-    private lateinit var page_text: TextField
+    public lateinit var page_text: TextField
     // Активные кнопки
     @FXML
     private lateinit var button_add: Button
@@ -89,12 +86,21 @@ class View {
     @FXML
     fun initialize() {
         initiazile_filter()
+        controller?.refresh_data()
         initialize_table()
-        update_pages()
         initilize_buttons()
         initialize_actions()
     }
+    fun setTableParams(cur:Int,all:Int){
+        page_text.text = cur.toString()
+        page_all.text=all.toString()
+    }
+    fun setTableData(args: List<Student_short>){
+        table.items.setAll(args)
+    }
+
      fun initilize_buttons(){
+         page_text.isDisable=true
         button_change.isDisable=true
         button_delete.isDisable=true
         table.selectionModel.selectionMode = SelectionMode.MULTIPLE
@@ -114,22 +120,18 @@ class View {
             }
         }
     }
-    fun update_pages(){
-        page_all.text= controller?.update_pages()
-        table= controller?.createPage(page_text.text.toInt(),table)!!
-    }
     fun initialize_actions(){
         button_prev.setOnAction {
             if(page_text.text.toInt()-1>=1){
-                page_text.text=(page_text.text.toInt()-1).toString()
+                controller?.curPage = controller?.curPage!! - 1
             }
-            update_pages()
+            controller?.refresh_data()
         }
         button_next.setOnAction {
             if(page_text.text.toInt()+1<=page_all.text.toInt()){
-                page_text.text=(page_text.text.toInt()+1).toString()
+                controller?.curPage = controller?.curPage!! + 1
             }
-            update_pages()
+            controller?.refresh_data()
         }
         button_clear.setOnAction {
             Git_list.value="Не важно"

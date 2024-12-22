@@ -103,27 +103,25 @@ class Student_list_DB private constructor():Student_list_interface {
         result=statement.executeQuery("select count(*) from student")
         if (result.next()) {
             count = result.getInt(1)
-            println("Количество студентов: $count")
         }
         return count
     }
-    override fun get_k_n_student_short_list(k:Int,n:Int):Data_list<Student_short> {
+    override fun get_k_n_student_short_list(k:Int,n:Int):Data_list_student_short {
         val list= mutableListOf<Student_short>()
         val statement: Statement = connection.createStatement()
         val result = statement.executeQuery("SELECT * FROM student ORDER BY id ASC LIMIT ${n} OFFSET ${(k-1)*n};")
         if(result!=null){
-            var input=""
             while (result.next()) {
-                input=""
-                for (i in 2..result.metaData.columnCount) {
-                    input+=result.getString(i)+" "
+                var list_args= mutableListOf<String>()
+                for (i in 1..result.metaData.columnCount) {
+                    list_args.add(result.getString(i))
                 }
-                list.add(Student_short(Student(input)))
-                println(input)
+                list.add(Student_short(Student(list_args.get(0),list_args.get(1),list_args.get(2),list_args.get(3)
+                    ,list_args.get(4),list_args.get(5),list_args.get(6),list_args.get(7))))
             }
-            return Data_list(list)
+            return Data_list_student_short(list)
         }
-        return Data_list(list)
+        return Data_list_student_short(list)
     }
 
 }

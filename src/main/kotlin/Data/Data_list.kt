@@ -1,4 +1,4 @@
-open class Data_list<T>(val data:List<T>) {
+open class Data_list<T>(var data:List<T>) {
     private var selected:MutableList<Int> = mutableListOf()
     fun select(index:Int){
             if(index<=data.size) {

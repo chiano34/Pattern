@@ -41,11 +41,11 @@ open class Student_list_super  {
         println(list_data.size)
         return list_data.size
     }
-    fun get_k_n_student_short_list(k:Int,n:Int):Data_list<Student_short>{
+    fun get_k_n_student_short_list(k:Int,n:Int):Data_list_student_short{
         require(n*k-1 in list_data.indices)
         val list_student=list_data.drop((k-1)*n).take(n)
         val short_list=list_student.map{Student_short(it)}
-        return Data_list(short_list)
+        return Data_list_student_short(short_list)
     }
     fun sort_by_name(){
         list_data.sortBy { it.GetFIO() }
