@@ -1,11 +1,19 @@
+package MVC
+
+import Student
+import Student_short
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.fxml.FXML
 import javafx.scene.Node
 import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
-
-class Controller {
+class View {
+    private var controller: Student_list_controller? = null
+    constructor(){
+        this.controller=Student_list_controller(this)
+        println("Контроллер задан")
+    }
     //фильтрация
     @FXML
     private lateinit var Email_list: ComboBox<Any>
@@ -33,10 +41,7 @@ class Controller {
 
     //Таблица
     @FXML
-    private lateinit var email_table: TableColumn<Any, Any>
-
-    @FXML
-    private lateinit var firstname_table: TableColumn<Any, Any>
+    private lateinit var contact_table: TableColumn<Any, Any>
 
     @FXML
     private lateinit var git_table: TableColumn<Any, Any>
@@ -45,21 +50,12 @@ class Controller {
     private lateinit var id_table: TableColumn<Any, Any>
 
     @FXML
-    private lateinit var lastname_table: TableColumn<Any, Any>
+    private lateinit var fio_table: TableColumn<Any, Any>
+
 
     @FXML
-    private lateinit var phone_table: TableColumn<Any, Any>
+    private lateinit var table: TableView<Student_short>
 
-    @FXML
-    private lateinit var surname_table: TableColumn<Any, Any>
-
-    @FXML
-    private lateinit var table: TableView<Student>
-
-    @FXML
-    private lateinit var tg_table: TableColumn<Any, Any>
-    // пагинация
-    private val rowsPerPage = 15
 
     @FXML
     private lateinit var button_next: Button
@@ -90,29 +86,6 @@ class Controller {
     @FXML
     private lateinit var FIO_text: TextField
 
-    private val students_list: ObservableList<Student> = FXCollections.observableArrayList(
-        Student("Abba Bob Cevin phone=+71891214092 telegram=@csdasd email=bsmth@get.ru git=chino34/git"),
-        Student("Babba Ann Bobby phone=+72891214092 telegram=@bsdasd email=csmth@get.ru git=achino34/git"),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git "),
-        Student("Cabba Casey Andrew phone=+73891214092 telegram=@asdasd email=asmth@get.ru git=bchino34/git ")
-    )
     @FXML
     fun initialize() {
         initiazile_filter()
@@ -121,8 +94,7 @@ class Controller {
         initilize_buttons()
         initialize_actions()
     }
-
-    fun initilize_buttons(){
+     fun initilize_buttons(){
         button_change.isDisable=true
         button_delete.isDisable=true
         table.selectionModel.selectionMode = SelectionMode.MULTIPLE
@@ -141,6 +113,10 @@ class Controller {
                 button_delete.isDisable = true
             }
         }
+    }
+    fun update_pages(){
+        page_all.text= controller?.update_pages()
+        table= controller?.createPage(page_text.text.toInt(),table)!!
     }
     fun initialize_actions(){
         button_prev.setOnAction {
@@ -197,32 +173,17 @@ class Controller {
 
     fun initialize_table(){
         id_table.cellValueFactory =PropertyValueFactory("id")
-        lastname_table.cellValueFactory = PropertyValueFactory("lastName")
-        firstname_table.cellValueFactory = PropertyValueFactory("firstName")
-        surname_table.cellValueFactory = PropertyValueFactory("surname")
+        fio_table.cellValueFactory = PropertyValueFactory("FIO")
         git_table.cellValueFactory = PropertyValueFactory("git")
-        tg_table.cellValueFactory = PropertyValueFactory("telegram")
-        phone_table.cellValueFactory = PropertyValueFactory("phone")
-        email_table.cellValueFactory = PropertyValueFactory("email")
+        contact_table.cellValueFactory = PropertyValueFactory("contact")
     }
 
-    private fun update_pages(){
-        var pagecount=Math.ceil(students_list.size.toDouble() / 15).toInt()
-        page_all.text=pagecount.toString()
-        createPage(page_text.text.toInt())
-    }
-    private fun createPage(pageIndex: Int): Node? {
-        val fromIndex = (pageIndex-1) * rowsPerPage
-        val toIndex = Math.min(fromIndex + rowsPerPage, students_list.size)
-        table.items = FXCollections.observableArrayList(students_list.subList(fromIndex, toIndex))
-        return table
-    }
 
     private fun handleChoice() {
         when (Git_list.value) {
             "Да" -> Git_text.isDisable = false
             "Нет", "Не важно" -> {Git_text.isDisable = true
-            Git_text.clear()}
+                Git_text.clear()}
         }
         when (Tg_list.value) {
             "Да" -> Tg_text.isDisable = false
@@ -239,7 +200,7 @@ class Controller {
             "Нет", "Не важно" -> {Phone_text.isDisable = true
                 Phone_text.clear()}
         }
-        
+
     }
 
 }

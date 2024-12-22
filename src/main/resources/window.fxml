@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.View">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="600.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
       <children>
@@ -42,13 +42,9 @@
                               <TableView fx:id="table" layoutX="185.0" layoutY="10.0" prefHeight="386.0" prefWidth="502.0">
                                 <columns>
                                     <TableColumn fx:id="id_table" prefWidth="33.600006103515625" text="ID" />
-                                  <TableColumn fx:id="lastname_table" prefWidth="75.20002746582031" text="Фамилия" />
-                                  <TableColumn fx:id="firstname_table" prefWidth="55.199951171875" text="Имя" />
-                                    <TableColumn fx:id="surname_table" prefWidth="82.4000244140625" text="Отчество" />
-                                    <TableColumn fx:id="git_table" prefWidth="59.999969482421875" text="Гит" />
-                                    <TableColumn fx:id="tg_table" prefWidth="54.4000244140625" text="ТГ" />
-                                    <TableColumn fx:id="phone_table" prefWidth="61.5999755859375" text="Телефон" />
-                                    <TableColumn fx:id="email_table" prefWidth="72.0" text="Почта" />
+                                  <TableColumn fx:id="fio_table" prefWidth="248.800048828125" text="ФИО" />
+                                    <TableColumn fx:id="git_table" minWidth="7.20001220703125" prefWidth="99.99996948242188" text="Гит" />
+                                    <TableColumn fx:id="contact_table" prefWidth="120.0" text="Контакт" />
                                 </columns>
                               </TableView>
                               <Button fx:id="button_prev" layoutX="363.0" layoutY="460.0" mnemonicParsing="false" text="prev" />

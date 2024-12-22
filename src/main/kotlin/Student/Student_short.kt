@@ -1,13 +1,13 @@
 class Student_short: Student_super {
-    internal var FIO: String=""
+    var FIO: String=""
         get(){
             return field
         }
-    internal var git: String?=null
+    var git: String?=null
         get(){
             return field
         }
-    internal var contact: String?=null
+    var contact: String?=null
         get(){
             return field
         }

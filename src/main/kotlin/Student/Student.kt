@@ -127,6 +127,29 @@ class Student: Student_super{
         firstName=_firstName
         surname=_surname
     }
+    constructor(_id:Int,_info:String){
+        var args: List<String>
+        args=_info.split(" ")
+        id=_id
+        lastName=args[0]
+        firstName=args[1]
+        surname=args[2]
+        for(arg in args){
+            if(arg.split("=")[0]=="phone"){
+                phone=arg.split("=")[1]
+            }
+            if(arg.split("=")[0]=="telegram"){
+                telegram=arg.split("=")[1]
+            }
+            if(arg.split("=")[0]=="email"){
+                email=arg.split("=")[1]
+            }
+            if(arg.split("=")[0]=="git"){
+                git=arg.split("=")[1]
+            }
+        }
+
+    }
     constructor(_info:String){
         var args: List<String>
         args=_info.split(" ")
