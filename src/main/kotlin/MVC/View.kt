@@ -18,9 +18,13 @@ import java.awt.Window
 class View {
     private var controller: Student_list_controller? = null
     private var controller_add: Student_add_controller?=null
+    private var controller_update: Student_update_controller?=null
+    //private var controller_delete: Student_delete_controller?=null
     constructor(){
         this.controller_add = Student_add_controller()
         this.controller=Student_list_controller(this)
+        this.controller_update=Student_update_controller()
+        //this.controller_delete=Student_delete_controller()
     }
     //фильтрация
     @FXML
@@ -62,7 +66,7 @@ class View {
 
 
     @FXML
-    private lateinit var table: TableView<Student_short>
+    internal lateinit var table: TableView<Student_short>
 
     @FXML
     private lateinit var button_next: Button
@@ -103,7 +107,18 @@ class View {
     @FXML
     fun openNewWindow() {
         controller_add?.openNewWindow()
+
         controller?.refresh_data()
+    }
+    @FXML
+    fun openEditWindow() {
+            val selected = table.selectionModel.selectedItem
+            if(selected!=null){
+
+                controller_update?.openNewWindow(selected.id)
+                controller_update?.SetId(selected.id)
+                controller?.refresh_data()
+        }
     }
 //    fun add_student(){
 //        var firstname=firstname_text_add.text

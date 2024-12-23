@@ -53,7 +53,7 @@
                               <Label fx:id="page_all" contentDisplay="CENTER" layoutX="431.0" layoutY="509.0" text="1" />
                               <Label fx:id="page_all1" contentDisplay="CENTER" layoutX="396.0" layoutY="488.0" text="Всего страниц" />
                               <Button fx:id="button_add" layoutX="747.0" layoutY="33.0" mnemonicParsing="false" onAction="#openNewWindow" prefHeight="26.0" prefWidth="97.0" text="Добавить" />
-                              <Button fx:id="button_change" layoutX="747.0" layoutY="79.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Изменить" />
+                              <Button fx:id="button_change" layoutX="747.0" layoutY="79.0" mnemonicParsing="false" onAction="#openEditWindow" prefHeight="26.0" prefWidth="97.0" text="Изменить" />
                               <Button fx:id="button_delete" layoutX="747.0" layoutY="122.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Удалить" />
                               <Button fx:id="button_refresh" layoutX="747.0" layoutY="168.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Обновить" />
                               <Button fx:id="button_clear" layoutX="30.0" layoutY="527.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Сброс" />
