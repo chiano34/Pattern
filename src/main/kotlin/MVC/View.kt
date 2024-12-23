@@ -179,6 +179,9 @@ class View {
             }
             controller?.refresh_data()
         }
+        button_refresh.setOnAction {
+            controller?.refresh_data()
+        }
         button_clear.setOnAction {
             Git_list.value="Не важно"
             Phone_list.value="Не важно"

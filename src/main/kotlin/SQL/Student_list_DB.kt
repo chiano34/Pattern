@@ -30,23 +30,36 @@ class Student_list_DB private constructor():Student_list_interface {
         }
     }
     override fun get_by_id(id:Int): Student? {
-        var input = ""
         val statement: Statement = connection.createStatement()
         val result = statement.executeQuery("SELECT * FROM student WHERE id = ${id};")
         if (result != null) {
+            var student_string=""
+            var list_args= mutableListOf<String>()
             while (result.next()) {
-                input = ""
-                for (i in 2..result.metaData.columnCount) {
-                    input+=result.getString(i)+" "
+                for (i in 1..result.metaData.columnCount) {
+                    if(result.getString(i)==null)
+                        list_args.add("")
+                    else
+                        list_args.add(result.getString(i))
+
                 }
+                student_string+=list_args.get(1)+" "+list_args.get(2)+" "+list_args.get(3)+" "
+                if(list_args.get(4)!=null)
+                    student_string+="telegram="+list_args.get(4)+" "
+                if(list_args.get(5)!=null)
+                    student_string+="phone="+list_args.get(5)+" "
+                if(list_args.get(6)!=null)
+                    student_string+="email="+list_args.get(6)+" "
+                if(list_args.get(7)!=null)
+                    student_string+="git="+list_args.get(7)+" "
             }
-            println(input)
-            return Student(input)
+            return  Student(list_args.get(0).toInt(),student_string)
         }
         return null
     }
     override fun add_student(student: Student) {
         val statement: Statement = connection.createStatement()
+        print(student.printObj())
         var insert="insert into student (lastName, firstName, surname, telegram, phone, email, git)" +
                 "values ('${student.lastName}','${student.firstName}','${student.surname}'"
         if(student.telegram!=null)
@@ -65,6 +78,7 @@ class Student_list_DB private constructor():Student_list_interface {
             insert+=",'${student.git}');"
         else
             insert+=",NULL);"
+        insert+=" "
         statement.executeUpdate(insert)
     }
     override fun update_student(student: Student,id:Int) {
@@ -87,7 +101,7 @@ class Student_list_DB private constructor():Student_list_interface {
             insert+=",git='${student.git}'"
         else
             insert+=",git=NULL"
-        insert+="where id=$id;\n"
+        insert+=" where id=$id;\n"
         println(insert)
         statement.executeUpdate(insert)
 
@@ -112,12 +126,26 @@ class Student_list_DB private constructor():Student_list_interface {
         val result = statement.executeQuery("SELECT * FROM student ORDER BY id ASC LIMIT ${n} OFFSET ${(k-1)*n};")
         if(result!=null){
             while (result.next()) {
+                var student_string=""
                 var list_args= mutableListOf<String>()
                 for (i in 1..result.metaData.columnCount) {
-                    list_args.add(result.getString(i))
+                    if(result.getString(i)==null)
+                        list_args.add("")
+                    else
+                        list_args.add(result.getString(i))
                 }
-                list.add(Student_short(Student(list_args.get(0),list_args.get(1),list_args.get(2),list_args.get(3)
-                    ,list_args.get(4),list_args.get(5),list_args.get(6),list_args.get(7))))
+                student_string+=list_args.get(1)+" "+list_args.get(2)+" "+list_args.get(3)+" "
+                println(student_string)
+                if(list_args.get(4)!=null)
+                    student_string+="telegram="+list_args.get(4)+" "
+                if(list_args.get(5)!=null)
+                    student_string+="phone="+list_args.get(5)+" "
+                if(list_args.get(6)!=null)
+                    student_string+="email="+list_args.get(6)+" "
+                if(list_args.get(7)!=null)
+                    student_string+="git="+list_args.get(7)+" "
+                var a=Student(list_args.get(0).toInt(),student_string)
+                list.add(Student_short(a))
             }
             return Data_list_student_short(list)
         }

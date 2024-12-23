@@ -41,6 +41,18 @@ public class Student_update_controller {
             val root: Parent = loader.load()
             val newController = loader.getController<Student_update_controller>()
             newController.SetId(id)
+            val a=student_list.get_by_id(id)
+            newController.firstname_text_add.text=a?.firstName
+            newController.lastname_text_add.text=a?.lastName
+            newController.surname_text_add.text=a?.surname
+            newController.git_text_add.isEditable=false
+            newController.git_text_add.text=a?.git
+            newController.phone_text_add.text=a?.phone
+            newController.phone_text_add.isEditable=false
+            newController.email_text_add.text=a?.email
+            newController.email_text_add.isEditable=false
+            newController.tg_text_add.text=a?.telegram
+            newController.tg_text_add.isEditable=false
             val newStage = Stage()
             newStage.initModality(Modality.APPLICATION_MODAL)
             newStage.title = "Новое окно"
@@ -79,10 +91,9 @@ public class Student_update_controller {
 //    }
     fun update_student() {
         var string=""
-        string+=firstname_text_add.text+" "
         string+=lastname_text_add.text+" "
+        string+=firstname_text_add.text+" "
         string+=surname_text_add.text+" "
-        println(string)
         if(git_text_add.text!=""){
             string+="git="+git_text_add.text+" "
         }
@@ -96,7 +107,12 @@ public class Student_update_controller {
             string+="email="+email_text_add.text
         }
         val update_stud=Student(string)
-        student_list.update_student(update_stud,id)
+        if(update_stud.firstName!=""&&
+            update_stud.lastName!=""&&update_stud.surname!=""){
+            student_list.update_student(update_stud,id)
+        }
+        val currentStage = button_add_add.scene.window as Stage
+        currentStage.close()
 
     }
 }

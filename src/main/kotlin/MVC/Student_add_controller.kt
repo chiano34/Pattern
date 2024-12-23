@@ -76,6 +76,10 @@ public class Student_add_controller{
         if(email_text_add.text!=""){
             string+="email="+email_text_add.text
         }
-        student_list.add_student(Student(string))
+        var a=Student(string)
+        if(a.firstName!=""&&a.lastName!=""&&a.surname!="")
+            student_list.add_student(a)
+        val currentStage = button_add_add.scene.window as Stage
+        currentStage.close()
     }
 }
