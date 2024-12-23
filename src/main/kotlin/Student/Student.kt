@@ -245,7 +245,7 @@ class Student: Student_super{
         return null
     }
     override fun toString():String{
-        var string=firstName+" "+lastName+" "+surname+" "
+        var string=lastName+" "+firstName+" "+surname+" "
         if(phone!=null)
             string+="phone="+phone+" "
         if(telegram!=null)
