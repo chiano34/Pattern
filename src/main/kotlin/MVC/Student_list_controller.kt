@@ -27,9 +27,8 @@ public class Student_list_controller{
     constructor(view: View){
         this.student_list=Student_list("database")
         this.view = view
-        println("Контроллер получил view")
     }
-    public  fun refresh_data(){
+    public fun refresh_data(){
         allPages=ceil(student_list!!.get_count().toDouble()/15.0).toInt()
         view?.setTableParams(curPage,allPages)
         data_list= student_list?.get_k_n_student_short_list(curPage,rowsPerPage)!!

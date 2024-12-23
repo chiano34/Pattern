@@ -4,13 +4,23 @@ import Student_short
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.fxml.FXML
+import javafx.fxml.FXMLLoader
+import javafx.scene.Parent
+import javafx.scene.Scene
 import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
+import javafx.scene.layout.AnchorPane
+import javafx.stage.Modality
+import javafx.stage.Stage
+import java.awt.Window
+
+
 class View {
     private var controller: Student_list_controller? = null
+    private var controller_add: Student_add_controller?=null
     constructor(){
+        this.controller_add = Student_add_controller()
         this.controller=Student_list_controller(this)
-        println("Контроллер задан")
     }
     //фильтрация
     @FXML
@@ -82,7 +92,6 @@ class View {
     private lateinit var button_clear: Button
     @FXML
     private lateinit var FIO_text: TextField
-
     @FXML
     fun initialize() {
         initiazile_filter()
@@ -91,6 +100,20 @@ class View {
         initilize_buttons()
         initialize_actions()
     }
+    @FXML
+    fun openNewWindow() {
+        controller_add?.openNewWindow()
+        controller?.refresh_data()
+    }
+//    fun add_student(){
+//        var firstname=firstname_text_add.text
+//        var lastname=lastname_text_add.text
+//        var surname=surname_text_add.text
+//        var tg=tg_text_add.text
+//        var phone=phone_text_add.text
+//        var email=email_text_add.text
+//        controller_add?.add_student()
+//    }
     fun setTableParams(cur:Int,all:Int){
         page_text.text = cur.toString()
         page_all.text=all.toString()
@@ -120,6 +143,7 @@ class View {
             }
         }
     }
+
     fun initialize_actions(){
         button_prev.setOnAction {
             if(page_text.text.toInt()-1>=1){
@@ -147,7 +171,6 @@ class View {
             Phone_text.isDisable=true
             Email_text.isDisable=true
             Tg_text.isDisable=true
-
         }
     }
     fun initiazile_filter(){
