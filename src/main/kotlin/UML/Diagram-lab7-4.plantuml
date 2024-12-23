@@ -1,0 +1,39 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+interface Strategy_interface << interface >>
+class Student
+class Student_add_controller
+class Student_list
+class Student_list_DB
+class Student_list_JSON
+class Student_list_YAML
+class Student_list_adapter
+class Student_list_controller
+interface Student_list_interface << interface >>
+class Student_list_super
+class Student_list_txt
+class Student_manager
+class Student_short
+class Student_super
+class Student_update_controller
+class View
+class Window
+class WindowKt
+
+Student                    -[#000082,plain]-^  Student_super             
+Student_list               -[#008200,dashed]-^  Student_list_interface    
+Student_list_DB            -[#008200,dashed]-^  Student_list_interface    
+Student_list_JSON          -[#008200,dashed]-^  Strategy_interface        
+Student_list_JSON          -[#000082,plain]-^  Student_list_super        
+Student_list_YAML          -[#008200,dashed]-^  Strategy_interface        
+Student_list_YAML          -[#000082,plain]-^  Student_list_super        
+Student_list_adapter       -[#008200,dashed]-^  Student_list_interface    
+Student_list_txt           -[#008200,dashed]-^  Strategy_interface        
+Student_list_txt           -[#000082,plain]-^  Student_list_super        
+Student_manager            -[#000082,plain]-^  Student_list_super        
+Student_short              -[#000082,plain]-^  Student_super             
+@enduml

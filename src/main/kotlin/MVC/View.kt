@@ -19,12 +19,12 @@ class View {
     private var controller: Student_list_controller? = null
     private var controller_add: Student_add_controller?=null
     private var controller_update: Student_update_controller?=null
-    //private var controller_delete: Student_delete_controller?=null
+    private var controller_delete: Student_delete_controller?=null
     constructor(){
         this.controller_add = Student_add_controller()
         this.controller=Student_list_controller(this)
         this.controller_update=Student_update_controller()
-        //this.controller_delete=Student_delete_controller()
+        this.controller_delete=Student_delete_controller()
     }
     //фильтрация
     @FXML
@@ -119,6 +119,13 @@ class View {
                 controller_update?.SetId(selected.id)
                 controller?.refresh_data()
         }
+    }
+    @FXML
+    fun deleteStudent(){
+        for(elem in table.selectionModel.selectedItems){
+        controller_delete?.delete_student(elem.id)
+    }
+        controller?.refresh_data()
     }
 //    fun add_student(){
 //        var firstname=firstname_text_add.text
