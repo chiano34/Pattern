@@ -10,7 +10,7 @@ import kotlin.test.assertTrue
 class Student_list_txtTest{
     @Test
     //Тест на запись в файл
-    fun testReadFromFile(@TempDir tempDir: File) {
+    fun read_from_file(@TempDir tempDir: File) {
         val file = File(tempDir, "students.txt")
         val writer = FileWriter(file)
         writer.write("Bob Smith Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git\n" +
@@ -31,14 +31,14 @@ class Student_list_txtTest{
     }
     @Test
     //Тест на вывод ошибки если файл не найден
-    fun testReadFromFileNotFound() {
+    fun read_from_file_not_found() {
         val studentListTxt = Student_list_txt()
         val students = studentListTxt.read_from_file("non_existent_file.txt")
         assertTrue(students.isEmpty())
     }
     @Test
     //Тест на вывод ошибки при попытке чтения из не закрытого файла
-    fun testReadFromFileIOException() {
+    fun read_from_file_error() {
         val file = File("test_file.txt")
         val writer = FileWriter(file)
         writer.write("Bob Smith Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git")
@@ -50,7 +50,7 @@ class Student_list_txtTest{
     }
     @Test
     //Тест на запись данных в файл
-    fun testWriteToFile(@TempDir tempDir: File) {
+    fun  write_to_file(@TempDir tempDir: File) {
         val studentListTxt = Student_list_txt()
         "Bob Smith Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git\n" +
                 "Bobb Smith Sun phone=+79891214092 telegram=@sdasd email=smth@get.ru git=chino34/git\n" +
@@ -73,7 +73,7 @@ class Student_list_txtTest{
     }
     @Test
     //Тест на чтение некорректных данных
-    fun testReadFromFileInvalidData(@TempDir tempDir: File) {
+    fun read_from_file_not_correct(@TempDir tempDir: File) {
         val file = File(tempDir, "invalid_students.txt")
         val writer = FileWriter(file)
         writer.write("lowercase n1mb3rs uPperCase phone=+nubmers telegram=without@inbegin email=nodomen@mail git=1")

@@ -59,7 +59,7 @@ class Student_list_DB private constructor():Student_list_interface {
     }
     override fun add_student(student: Student) {
         val statement: Statement = connection.createStatement()
-        print(student.printObj())
+
         var insert="insert into student (lastName, firstName, surname, telegram, phone, email, git)" +
                 "values ('${student.lastName}','${student.firstName}','${student.surname}'"
         if(student.telegram!=null)
