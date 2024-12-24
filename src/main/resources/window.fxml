@@ -39,7 +39,7 @@
                               <TextField fx:id="Email_text" layoutX="14.0" layoutY="447.0" prefHeight="26.0" prefWidth="129.0" />
                               <Label layoutX="16.0" layoutY="422.0" text="Почта" />
                               <ComboBox fx:id="Email_list" layoutX="15.0" layoutY="484.0" prefHeight="26.0" prefWidth="128.0" promptText="Выбор почты" visibleRowCount="3" />
-                              <TableView fx:id="table" layoutX="185.0" layoutY="10.0" prefHeight="386.0" prefWidth="502.0">
+                              <TableView fx:id="table" layoutX="185.0" layoutY="10.0" prefHeight="412.0" prefWidth="510.0">
                                 <columns>
                                     <TableColumn fx:id="id_table" prefWidth="33.600006103515625" text="ID" />
                                   <TableColumn fx:id="fio_table" prefWidth="248.800048828125" text="ФИО" />

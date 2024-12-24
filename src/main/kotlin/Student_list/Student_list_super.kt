@@ -41,7 +41,7 @@ open class Student_list_super  {
         println(list_data.size)
         return list_data.size
     }
-    fun get_k_n_student_short_list(k:Int,n:Int):Data_list_student_short{
+    fun get_k_n_student_short_list(k:Int,n:Int,filters:MutableList<Pair<String,String>>):Data_list_student_short{
         require(n*k-1 in list_data.indices)
         val list_student=list_data.drop((k-1)*n).take(n)
         val short_list=list_student.map{Student_short(it)}

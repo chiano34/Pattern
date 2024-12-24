@@ -120,7 +120,7 @@ class Student_list_DB private constructor():Student_list_interface {
         }
         return count
     }
-    override fun get_k_n_student_short_list(k:Int,n:Int):Data_list_student_short {
+    override fun get_k_n_student_short_list(k:Int,n:Int,filters:MutableList<Pair<String,String>>):Data_list_student_short {
         val list= mutableListOf<Student_short>()
         val statement: Statement = connection.createStatement()
         val result = statement.executeQuery("SELECT * FROM student ORDER BY id ASC LIMIT ${n} OFFSET ${(k-1)*n};")
@@ -145,7 +145,8 @@ class Student_list_DB private constructor():Student_list_interface {
                 if(list_args.get(7)!=null)
                     student_string+="git="+list_args.get(7)+" "
                 var a=Student(list_args.get(0).toInt(),student_string)
-                list.add(Student_short(a))
+                if(a.check_filters(a,filters))
+                    list.add(Student_short(a))
             }
             return Data_list_student_short(list)
         }

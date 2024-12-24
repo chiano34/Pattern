@@ -244,6 +244,79 @@ class Student: Student_super{
             return email
         return null
     }
+    fun GetFullName():String{
+        return lastName+" "+firstName+" "+surname
+    }
+    public fun check_filters(student: Student,filters: MutableList<Pair<String, String>>):Boolean{
+        var check=true
+        if(filters[0].first!=""){
+            if(student.GetFullName().contains(filters[0].first)==false)
+                check=false
+        }
+
+        if( filters[1].second=="Да"){
+            if(student.git!=null){
+                if(filters[1].first!=""){
+                    println(student.git+filters[1].first)
+                    if(student.git!!.contains(filters[1].first)==false){
+                        check=false
+                    }
+                }
+            }
+            else{
+                check=false
+            }
+        }
+        else if(filters[1].second=="Нет"&&(student.git!=null))
+            check=false
+
+        if( filters[2].second=="Да"){
+            if(student.telegram!=null){
+                if(filters[2].first!=""){
+                    if(student.telegram!!.contains(filters[2].first)==false){
+                        check=false
+                    }
+                }
+            }
+            else{
+                check=false
+            }
+        }
+        else if(filters[2].second=="Нет"&&(student.telegram!=null))
+            check=false
+
+        if( filters[3].second=="Да"){
+            if(student.phone!=null){
+                if(filters[3].first!=""){
+                    if(student.phone!!.contains(filters[3].first)==false){
+                        check=false
+                    }
+                }
+            }
+            else{
+                check=false
+            }
+        }
+        else if(filters[3].second=="Нет"&&(student.phone!=null))
+            check=false
+
+        if( filters[4].second=="Да"){
+            if(student.email!=null){
+                if(filters[4].first!=""){
+                    if(student.email!!.contains(filters[4].first)==false){
+                        check=false
+                    }
+                }
+            }
+            else{
+                check=false
+            }
+        }
+        else if(filters[4].second=="Нет"&&(student.email!=null))
+            check=false
+
+        return check
+    }
     override fun toString():String{
         var string=lastName+" "+firstName+" "+surname+" "
         if(phone!=null)
