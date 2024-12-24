@@ -42,8 +42,13 @@ open class Student_list_super  {
         return list_data.size
     }
     fun get_k_n_student_short_list(k:Int,n:Int,filters:MutableList<Pair<String,String>>):Data_list_student_short{
-        require(n*k-1 in list_data.indices)
-        val list_student=list_data.drop((k-1)*n).take(n)
+        var new_list=mutableListOf<Student>()
+        for(student in list_data){
+            if(student.check_filters(student,filters)){
+                new_list.add(student)
+            }
+        }
+        val list_student=new_list.drop((k-1)*n).take(n)
         val short_list=list_student.map{Student_short(it)}
         return Data_list_student_short(short_list)
     }

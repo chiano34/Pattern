@@ -56,7 +56,7 @@ public class Student_add_controller{
             add_student()
         }
     }
-    private var student_list=Student_list("database")
+    private var student_list=Student_list("src/main/kotlin/output/json.json")
 
     public fun add_student(){
         var string=""

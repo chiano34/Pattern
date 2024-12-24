@@ -28,12 +28,15 @@ class Student_list_adapter(var path:String):Student_list_interface
     }
     override fun add_student(student: Student) {
         student_list?.add_student(student)
+        student_list?.write_to_file(path)
     }
     override fun update_student(student: Student,id: Int) {
         student_list?.update_student(id,student)
+        student_list?.write_to_file(path)
     }
     override fun delete_student(id: Int) {
         student_list?.delete_student(id)
+        student_list?.write_to_file(path)
     }
     override fun get_count(): Int {
         return student_list?.get_count()?:0

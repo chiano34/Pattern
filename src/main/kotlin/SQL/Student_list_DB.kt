@@ -135,7 +135,6 @@ class Student_list_DB private constructor():Student_list_interface {
                         list_args.add(result.getString(i))
                 }
                 student_string+=list_args.get(1)+" "+list_args.get(2)+" "+list_args.get(3)+" "
-                println(student_string)
                 if(list_args.get(4)!=null)
                     student_string+="telegram="+list_args.get(4)+" "
                 if(list_args.get(5)!=null)

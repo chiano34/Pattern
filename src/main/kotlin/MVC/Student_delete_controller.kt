@@ -15,7 +15,7 @@ import javafx.stage.Stage
 
 public class Student_delete_controller {
 
-    var student_list = Student_list("database")
+    var student_list = Student_list("src/main/kotlin/output/json.json")
 
     fun delete_student(id:Int) {
         println("Удалён студент "+id)

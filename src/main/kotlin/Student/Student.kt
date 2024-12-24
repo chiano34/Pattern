@@ -96,7 +96,7 @@ class Student: Student_super{
             println("Валидация не пройдена")
             return false
     }
-    fun set_contact(_email: String?=null,_phone: String?=null,_telegram: String?=null){
+    fun Set_contact(_email: String?=null,_phone: String?=null,_telegram: String?=null){
             this.email=_email
             this.phone=_phone
             this.telegram=_telegram
@@ -247,7 +247,7 @@ class Student: Student_super{
     fun GetFullName():String{
         return lastName+" "+firstName+" "+surname
     }
-    public fun check_filters(student: Student,filters: MutableList<Pair<String, String>>):Boolean{
+    fun check_filters(student: Student,filters: MutableList<Pair<String, String>>):Boolean{
         var check=true
         if(filters[0].first!=""){
             if(student.GetFullName().contains(filters[0].first)==false)

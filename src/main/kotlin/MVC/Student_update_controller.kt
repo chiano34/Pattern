@@ -15,7 +15,7 @@ import javafx.stage.Stage
 
 public class Student_update_controller {
 
-    var student_list = Student_list("database")
+    var student_list = Student_list("src/main/kotlin/output/json.json")
     var id=0
     @FXML
     private lateinit var button_add_add: Button

@@ -25,10 +25,11 @@ public class Student_list_controller{
     private var student_list:Student_list?=null
 
     constructor(view: View){
-        this.student_list=Student_list("database")
+        this.student_list=Student_list("src/main/kotlin/output/json.json")
         this.view = view
     }
     public fun refresh_data(){
+        this.student_list=Student_list("src/main/kotlin/output/json.json")
         allPages=ceil(student_list!!.get_count().toDouble()/15.0).toInt()
         view?.setTableParams(curPage,allPages)
         view?.filters
