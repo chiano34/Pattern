@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Таблица со студентами</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Change font for better readability */
+            background-color: #f4f4f9; /* Light background color */
+            color: #333; /* Dark text color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #0056b3; /* Header color */
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+            width: 80%; /* Set table width */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Add shadow for depth */
+        }
+        table, th, td {
+            border: 1px solid #dee2e6; /* Lighter border color */
+        }
+        th, td {
+            padding: 12px; /* Increased padding for better spacing */
+            text-align: center;
+        }
+        th {
+            background-color: #007bff; /* Header background color */
+            color: white; /* Header text color */
+        }
+        tbody tr:hover {
+            background-color: #ffcccc; /* Hover effect for rows */
+        }
+        .selected {
+            background-color: #007bff; /* Selected row color */
+            color: white; /* Change text color on selection */
+        }
+        div {
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #28a745; /* Button color */
+            color: white; /* Button text color */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        button:hover:not(.disabled) {
+            background-color: #218838; /* Darker shade on hover */
+        }
+        .disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .filter-container {
+            margin-bottom: 20px;
+        }
+        .filter-container input {
+            margin: 0 5px;
+            padding: 8px; /* Increased padding for input fields */
+            border-radius: 4px; /* Rounded corners for inputs */
+            border: 1px solid #ccc; /* Light border for inputs */
+        }
+    </style>
+</head>
+<body>
+<h1>Список студентов</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th onclick="sort_row(0)">Id</th>
+        <th onclick="sort_row(1)">ФИО</th>
+        <th onclick="sort_row(2)">Гит</th>
+        <th onclick="sort_row(3)">Контакт</th>
+    </tr>
+    </thead>
+    <tbody id="student_table">
+    <tr onclick="toggleRowSelection(this)" th:each="student : ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.fullname}"></td>
+        <td th:text="${student.git}"></td>
+        <td th:text="${student.contact}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+    <a th:href="@{/students(page=${currentPage - 1})}" th:if="${currentPage > 0}">Предыдущая</a>
+    Текущая страница <span th:text="${currentPage + 1}"></span> из <span th:text="${totalPages}"></span>
+    <a th:href="@{/students(page=${currentPage + 1})}" th:if="${currentPage < totalPages - 1}">Следующая</a>
+</div>
+
+
+<script>
+    function sort_row(columnIndex) {
+        const table = document.getElementById("student_table");
+        const rows = Array.from(table.querySelectorAll("tr"));
+
+        const sortedRows = rows.slice(1).sort((a, b) => {
+            const aValue = a.getElementsByTagName("td")[columnIndex]?.textContent || "";
+            const bValue = b.getElementsByTagName("td")[columnIndex]?.textContent || "";
+
+            return aValue.localeCompare(bValue, undefined, { numeric: true });
+        });
+        while (table.firstChild) {
+            table.removeChild(table.firstChild);
+        }
+
+        table.appendChild(rows[0]);
+
+        sortedRows.forEach(row => table.appendChild(row));
+    }
+</script>
+
+</body>
+</html>

@@ -28,7 +28,7 @@ public class Student_list_controller{
         this.student_list=Student_list("src/main/kotlin/output/json.json")
         this.view = view
     }
-    public fun refresh_data(){
+    fun refresh_data(){
         this.student_list=Student_list("src/main/kotlin/output/json.json")
         allPages=ceil(student_list!!.get_count().toDouble()/15.0).toInt()
         view?.setTableParams(curPage,allPages)
